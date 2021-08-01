@@ -3,8 +3,8 @@
 #' Takes a hex code like '#C0FFEE' and simplifies to '#CFE' (i.e. the first
 #' character from each character pair).
 #'
-#' @param hex Character. A valid hex colour code starting with a hash mark (#).
-#'     Characters must take the values 0 to 9 or A to F (case insensitive).
+#' @param hex_code Character. A valid hex colour code starting with a hash mark
+#'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
 #'
 #' @return Character. A shortened hex colour code: a hash mark followed by three
 #'     characters (0 to 9, A to F).
@@ -70,7 +70,7 @@ dh_graph <- function(hex_short) {
   hex_short <- toupper(hex_short)
 
   chars <- strsplit(hex_short, "")[[1]]
-  hex_vals <- setNames(c(0:15), c(0:9, LETTERS[1:6]))
+  hex_vals <- stats::setNames(c(0:15), c(0:9, LETTERS[1:6]))
 
   r_val <- hex_vals[chars[2]]
   g_val <- hex_vals[chars[3]]

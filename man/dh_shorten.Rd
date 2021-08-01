@@ -7,8 +7,8 @@
 dh_shorten(hex_code)
 }
 \arguments{
-\item{hex}{Character. A valid hex colour code starting with a hash mark (#).
-Characters must take the values 0 to 9 or A to F (case insensitive).}
+\item{hex_code}{Character. A valid hex colour code starting with a hash mark
+(#). Characters must take the values 0 to 9 or A to F (case insensitive).}
 }
 \value{
 Character. A shortened hex colour code: a hash mark followed by three

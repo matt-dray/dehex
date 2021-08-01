@@ -8,5 +8,4 @@ test_that("shortening works", {
 
 test_that("graph works", {
   expect_error(dh_graph("x"))
-  expect_equal(class(dh_graph("#fff")) == "NULL")
 })
