@@ -18,24 +18,24 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 > To remove a hex (a spell, especially an evil spell).
 
-An R package containing simple functions to help me train myself to
+A work-in-progress R package containing simple functions to help me train myself to
 quickly ‘read’ a colour from its hex code. I’m colourblind (a
 deuteranope) so this might be a useful skill.
 
-Install the development version from GitHub with:
-
-``` r
-remotes::install_github("matt-dray/dehex")
-```
-
 The package functions follow the five steps in [David DeSandro’s dotCSS
-2018 talk](https://metafizzy.co/blog/read-color-hex-codes/):
+2018 talk](https://metafizzy.co/blog/read-color-hex-codes/) (ticks mean there's a function for it):
 
 1.  Simplify the hex code ✓
 2.  Create a bar chart ✓
 3.  Assess hue from shape
 4.  Assess lightness from total
 5.  Assess saturation from range
+
+Install the development version from GitHub with:
+
+``` r
+remotes::install_github("matt-dray/dehex")
+```
 
 First, convert a full six-character hex code to its three-character
 shortcode:
