@@ -37,7 +37,8 @@
   if (light) {
 
 
-    blockset_mean <- setNames(rep(blocks[["empty"]], 15), as.character(1:15))
+    blockset_mean <-
+      stats::setNames(rep(blocks[["empty"]], 15), as.character(1:15))
     blockset_mean[round(mean(rgb_dec))] <- blocks[["full"]]
 
     blockset <- c(blockset, list("L" = blockset_mean))
@@ -49,7 +50,8 @@
     rgb_min <- min(rgb_dec)
     rgb_max <- max(rgb_dec)
 
-    blockset_range <- setNames(rep(blocks[["empty"]], 15), as.character(1:15))
+    blockset_range <-
+      stats::setNames(rep(blocks[["empty"]], 15), as.character(1:15))
     blockset_range[rgb_min:rgb_max] <- blocks[["full"]]
 
     blockset <- c(blockset, list("S" = blockset_range))

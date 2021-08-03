@@ -1,5 +1,5 @@
 Package: dehex
-Title: Learn To Quickly Assess Hex Code Colours
+Title: Learn to Quickly Assess Hex Code Colours
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Matt",

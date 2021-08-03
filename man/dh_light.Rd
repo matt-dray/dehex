@@ -6,6 +6,10 @@
 \usage{
 dh_light(light = TRUE)
 }
+\arguments{
+\item{light}{Logical. Add an optional bar showing where the mean of the RGB
+values falls (i.e. am indicator of lightness)?}
+}
 \value{
 Nothing. Prints bar charts of RGB values to the console, made with
 unicode blocks.

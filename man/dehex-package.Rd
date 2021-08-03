@@ -4,7 +4,7 @@
 \name{dehex-package}
 \alias{dehex}
 \alias{dehex-package}
-\title{dehex: Learn To Quickly Assess Hex Code Colours}
+\title{dehex: Learn to Quickly Assess Hex Code Colours}
 \description{
 Follow David DeSanto's method to quickly generate a rough colour
     name by looking only at its hex code.

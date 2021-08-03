@@ -6,6 +6,10 @@
 \usage{
 dh_sat(sat = TRUE)
 }
+\arguments{
+\item{sat}{Logical. Add an optional bar showing where the range of the RGB
+values falls (i.e. am indicator of saturation)?}
+}
 \value{
 Nothing. Prints bar charts of RGB values to the console, made with
 unicode blocks.

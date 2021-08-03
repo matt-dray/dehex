@@ -128,6 +128,9 @@ dh_hue <- function() {
 #' reference to assess which RGB profile most closely represents a user's hex
 #' shortcode.
 #'
+#' @param light Logical. Add an optional bar showing where the mean of the RGB
+#'     values falls (i.e. am indicator of lightness)?
+#'
 #' @details The values are light (i.e. high mean value of RGB), middle and dark
 #'     (i.e. small range in RGB values).
 #'
@@ -152,6 +155,9 @@ dh_light <- function(light = TRUE) {
 #' Print bar charts of RGB values that represent simplified groupings of
 #' saturation levels in the HSL system. Intended for use as a reference to
 #' assess which RGB profile most closely represents a user's hex shortcode.
+#'
+#' @param sat Logical. Add an optional bar showing where the range of the RGB
+#'     values falls (i.e. am indicator of saturation)?
 #'
 #' @details The values are saturated (i.e. the largest range in RGB values)
 #'     washed, muted and grey (i.e. no difference between RGB values).
