@@ -18,16 +18,21 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 > To remove a hex (a spell, especially an evil spell).
 
-A work-in-progress R package containing simple functions to help me
-train myself to quickly ‘read’ a colour from its hex code. I’m
-colourblind (a deuteranope) so this might be a useful skill.
+An R package containing simple functions to help me train myself to
+quickly ‘read’ a colour from its hex code. I’m colourblind (a
+deuteranope) so this might be a useful skill.
+
+⚠ The package is very much a work-in-progress and things may change or
+break at any time.
 
 The package functions follow the five steps in [David DeSandro’s
-dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/):
+dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/)
+([thanks
+Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)):
 
-1.  Simplify the hex code ✓
-2.  Create a bar chart ✓
-3.  Assess hue from graph ‘shape’ ⚠
+1.  Simplify the hex code
+2.  Create a bar chart
+3.  Assess hue from graph ‘shape’
 4.  Assess lightness from total
 5.  Assess saturation from range
 
@@ -61,12 +66,8 @@ dehex::dh_graph(short)
 Your IDE will likely show the RGB columns as their respective colours,
 thanks to [the {crayon} package](https://github.com/r-lib/crayon).
 
-Print the RGB graphs for the 12 primary, secondary and tertiary hues
-against which you can compare the RGB graph for your hex shortcode.
-Which graph is the best match?
-
-You can print all 12 hues and assess the most similar distribution by
-eye:
+You can print the 12 primary, secondary and tertiary hues and assess the
+one with the most similar RGB distribution to yours:
 
 ``` r
 dehex::dh_hue()
@@ -131,21 +132,59 @@ dehex::dh_hue()
 # B ████████░░░░░░░
 ```
 
-Or provide the shortcode and let the most similar hue be selected for
-you (work-in-progress):
+You can also view charts for the three broad lightness categories. The
+higher the mean value, the lighter the colour is. We can add a marker to
+the chart to indicate the mean RGB value, which can help decide how
+light the colour is.
 
 ``` r
-dehex::dh_hue(short)
-# Your colour: #E23
-# R ██████████████░
-# G ██░░░░░░░░░░░░░
-# B ███░░░░░░░░░░░░
-# 
-# Most similar hue: Red
+dehex::dh_light(light = TRUE)
+# Light
 # R ███████████████
-# G █░░░░░░░░░░░░░░
+# G ██████████████░
+# B █████████████░░
+# L ░░░░░░░░░░░░░█░
+# 
+# Middle
+# R █████████░░░░░░
+# G ████████░░░░░░░
+# B ███████░░░░░░░░
+# L ░░░░░░░█░░░░░░░
+# 
+# Dark
+# R ███░░░░░░░░░░░░
+# G ██░░░░░░░░░░░░░
 # B █░░░░░░░░░░░░░░
+# L ░█░░░░░░░░░░░░░
 ```
+
+You can also compare to the four broad saturation categories. A greater
+range in RGB values means it’s more saturated.
+
+``` r
+dehex::dh_sat()
+# Saturated
+# R ███████████████
+# G ████████░░░░░░░
+# B ░░░░░░░░░░░░░░░
+# 
+# Washed
+# R █████████████░░
+# G ████████░░░░░░░
+# B ██░░░░░░░░░░░░░
+# 
+# Muted
+# R ██████████░░░░░
+# G ████████░░░░░░░
+# B █████░░░░░░░░░░
+# 
+# Grey
+# R ████████░░░░░░░
+# G ████████░░░░░░░
+# B ████████░░░░░░░
+```
+
+Additional functionality is being added.
 
 ## Code of Conduct
 
