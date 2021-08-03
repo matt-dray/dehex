@@ -46,7 +46,9 @@ dh_shorten <- function(hex_code) {
 #' @param text Character. An optional string to place above the plot. If NULL
 #'     (default), then the shortcode will be automatically selected.
 #' @param light Logical. Add an optional bar showing where the mean of the RGB
-#'     values falls (i.e. am indicator of 'lightness')?
+#'     values falls (i.e. am indicator of lightness)?
+#' @param sat Logical. Add an optional bar showing where the range of the RGB
+#'     values falls (i.e. am indicator of saturation)?
 #'
 #' @details The amount of red (R), green (G) and blue (B) is calculated on the
 #'     basis that hex shortcodes contain one character for each colour. Since
@@ -58,7 +60,7 @@ dh_shorten <- function(hex_code) {
 #' @export
 #'
 #' @examples dh_graph("#D83")
-dh_graph <- function(hex_short, text = NULL, light = FALSE) {
+dh_graph <- function(hex_short, text = NULL, light = FALSE, sat = FALSE) {
 
   if (!grepl("^#([[:xdigit:]]{3})$", hex_short)) {
     stop("'hex_code' must be a valid 3-character hex code starting '#'.")
@@ -71,7 +73,7 @@ dh_graph <- function(hex_short, text = NULL, light = FALSE) {
   rgb_dec        <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
 
   blocks    <- .get_blocks()
-  blocksets <- .get_rgb_blocksets(blocks, rgb_dec, light = light)
+  blocksets <- .get_rgb_blocksets(blocks, rgb_dec, light = light, sat = sat)
 
   cat(
     ifelse(is.null(text), hex_short, text), "\n",
@@ -79,27 +81,22 @@ dh_graph <- function(hex_short, text = NULL, light = FALSE) {
     crayon::green(c("G ", blocksets$G, "\n")),
     crayon::blue( c("B ", blocksets$B, "\n")),
     if (light) c("L ", blocksets$L, "\n"),
+    if (sat) c("S ", blocksets$S, "\n"),
     "\n",
     sep = ""
   )
 
 }
 
-#' Print RGB Graphs to Assess Hue Similarity
+#' Print RGB Bar Graphs to Demonstrate Hue Profiles
 #'
-#' Print RGB graphs for the 12 primary, secondary and tertiary colours. Use the
-#' shape of their distributions to assess the 'most similar hue' to a given hex
-#' shortcode. Can also return the 'answer' for the hue that's 'closest' to your
-#' provided hex shortcode.
+#' Print the primary, secondary and tertiary colours in the HSL system as bar
+#' charts of the RGB values that they're composed of. Intended for use as a
+#' reference to assess which RGB profile most closely represents a user's hex
+#' shortcode.
 #'
-#' @param hex_short Character. A valid hex-colour shortcode starting with a
-#'     hash mark (#) and followed by three alphanumeric characters, which must
-#'     take the values 0 to 9 or A to F (case insensitive). If NULL (default),
-#'     all 16 graphs will be printed along with their common name.
-#'
-#' @return Nothing. Prints to the console 12 RGB bar charts (if hex_short =
-#'     NULL), or prints the RGB graph for the provided shortcode, plus the
-#'     RGB graph for the (automatically-selected) 'most similar' hue.
+#' @return Nothing. Prints bar charts of RGB values to the console, made with
+#'     unicode blocks.
 #' @export
 #'
 #' @examples dh_hue()
@@ -124,7 +121,21 @@ dh_hue <- function() {
 
 }
 
+#' Print RGB Bar Graphs to Demonstrate Light Profiles
+#'
+#' Print the primary, secondary and tertiary colours in the HSL system as bar
+#' charts of the RGB values that they're composed of. Intended for use as a
+#' reference to assess which RGB profile most closely represents a user's hex
+#' shortcode.
+#'
+#' @details The values are light (i.e. high mean value of RGB), middle and dark
+#'     (i.e. small range in RGB values).
+#'
+#' @return Nothing. Prints bar charts of RGB values to the console, made with
+#'     unicode blocks.
 #' @export
+#'
+#' @examples dh_hue()
 dh_light <- function(light = TRUE) {
 
   light_hex <- c(
@@ -136,8 +147,21 @@ dh_light <- function(light = TRUE) {
 
 }
 
+#' Print RGB Bar Graphs to Demonstrate Saturation Profiles
+#'
+#' Print bar charts of RGB values that represent simplified groupings of
+#' saturation levels in the HSL system. Intended for use as a reference to
+#' assess which RGB profile most closely represents a user's hex shortcode.
+#'
+#' @details The values are saturated (i.e. the largest range in RGB values)
+#'     washed, muted and grey (i.e. no difference between RGB values).
+#'
+#' @return Nothing. Prints bar charts of RGB values to the console, made with
+#'     unicode blocks.
 #' @export
-dh_sat <- function() {
+#'
+#' @examples dh_hue()
+dh_sat <- function(sat = TRUE) {
 
   sat_hex <- c(
     "#F80" = "Saturated",
@@ -146,6 +170,6 @@ dh_sat <- function() {
     "#888" = "Grey"
   )
 
-  purrr::walk2(names(sat_hex), sat_hex, dh_graph)
+  purrr::walk2(names(sat_hex), sat_hex, ~dh_graph(.x, .y, sat = sat))
 
 }

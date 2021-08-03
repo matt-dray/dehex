@@ -132,13 +132,13 @@ dehex::dh_hue()
 # B ████████░░░░░░░
 ```
 
-You can also view charts for the three broad lightness categories. The
-higher the mean value, the lighter the colour is. We can add a marker to
-the chart to indicate the mean RGB value, which can help decide how
-light the colour is.
+You can also view charts for the three broad lightness (L) categories.
+The higher the mean value, the lighter the colour is. By default, a
+marker is added to the chart to indicate the mean RGB value, which can
+help decide how light the colour is.
 
 ``` r
-dehex::dh_light(light = TRUE)
+dehex::dh_light()
 # Light
 # R ███████████████
 # G ██████████████░
@@ -158,8 +158,9 @@ dehex::dh_light(light = TRUE)
 # L ░█░░░░░░░░░░░░░
 ```
 
-You can also compare to the four broad saturation categories. A greater
-range in RGB values means it’s more saturated.
+You can also compare to the four broad saturation (S) categories. A
+greater range in RGB values means it’s more saturated. By default, a bar
+is added to show the range of the RGB values.
 
 ``` r
 dehex::dh_sat()
@@ -167,24 +168,28 @@ dehex::dh_sat()
 # R ███████████████
 # G ████████░░░░░░░
 # B ░░░░░░░░░░░░░░░
+# S ███████████████
 # 
 # Washed
 # R █████████████░░
 # G ████████░░░░░░░
 # B ██░░░░░░░░░░░░░
+# S ░████████████░░
 # 
 # Muted
 # R ██████████░░░░░
 # G ████████░░░░░░░
 # B █████░░░░░░░░░░
+# S ░░░░██████░░░░░
 # 
 # Grey
 # R ████████░░░░░░░
 # G ████████░░░░░░░
 # B ████████░░░░░░░
+# S ░░░░░░░█░░░░░░░
 ```
 
-Additional functionality is being added.
+(Additional functionality to be added.)
 
 ## Code of Conduct
 

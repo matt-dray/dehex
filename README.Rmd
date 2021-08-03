@@ -69,19 +69,19 @@ You can print the 12 primary, secondary and tertiary hues and assess the one wit
 dehex::dh_hue()
 ```
 
-You can also view charts for the three broad lightness categories. The higher the mean value, the lighter the colour is. We can add a marker to the chart to indicate the mean RGB value, which can help decide how light the colour is.
+You can also view charts for the three broad lightness (L) categories. The higher the mean value, the lighter the colour is. By default, a marker is added to the chart to indicate the mean RGB value, which can help decide how light the colour is.
 
 ```{r ex-light}
-dehex::dh_light(light = TRUE)
+dehex::dh_light()
 ```
 
-You can also compare to the four broad saturation categories. A greater range in RGB values means it's more saturated.
+You can also compare to the four broad saturation (S) categories. A greater range in RGB values means it's more saturated. By default, a bar is added to show the range of the RGB values.
 
 ```{r ex-sat}
 dehex::dh_sat()
 ```
 
-Additional functionality is being added.
+(Additional functionality to be added.)
 
 ## Code of Conduct
 

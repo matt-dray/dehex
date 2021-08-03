@@ -4,7 +4,7 @@
 \alias{dh_graph}
 \title{Print a Hex Shortcode as an RGB graph}
 \usage{
-dh_graph(hex_short, text = NULL, light = FALSE)
+dh_graph(hex_short, text = NULL, light = FALSE, sat = FALSE)
 }
 \arguments{
 \item{hex_short}{Character. A valid hex-colour shortcode starting with a
@@ -15,7 +15,10 @@ take the values 0 to 9 or A to F (case insensitive).}
 (default), then the shortcode will be automatically selected.}
 
 \item{light}{Logical. Add an optional bar showing where the mean of the RGB
-values falls (i.e. am indicator of 'lightness')?}
+values falls (i.e. am indicator of lightness)?}
+
+\item{sat}{Logical. Add an optional bar showing where the range of the RGB
+values falls (i.e. am indicator of saturation)?}
 }
 \value{
 Nothing. Prints to the console with cat() a bar chart.

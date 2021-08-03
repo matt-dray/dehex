@@ -21,7 +21,7 @@
   list(full = "\U2588", empty = "\U2591")
 }
 
-.get_rgb_blocksets <- function(blocks, rgb_dec, light = FALSE) {
+.get_rgb_blocksets <- function(blocks, rgb_dec, light = FALSE, sat = FALSE) {
 
   blockset <- purrr::set_names(
     purrr::map(
@@ -36,15 +36,23 @@
 
   if (light) {
 
-    rgb_mean <- ceiling(mean(rgb_dec))
 
-    blockset_mean <- c(
-      rep(blocks[["empty"]], rgb_mean - 1),
-      rep(blocks[["full"]], 1),
-      rep(blocks[["empty"]], 15 - rgb_mean)  # TODO: this calc isn't right
-    )
+    blockset_mean <- setNames(rep(blocks[["empty"]], 15), as.character(1:15))
+    blockset_mean[round(mean(rgb_dec))] <- blocks[["full"]]
 
     blockset <- c(blockset, list("L" = blockset_mean))
+
+  }
+
+  if (sat) {
+
+    rgb_min <- min(rgb_dec)
+    rgb_max <- max(rgb_dec)
+
+    blockset_range <- setNames(rep(blocks[["empty"]], 15), as.character(1:15))
+    blockset_range[rgb_min:rgb_max] <- blocks[["full"]]
+
+    blockset <- c(blockset, list("S" = blockset_range))
 
   }
 
