@@ -28,8 +28,15 @@ proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https:
 
 > To remove a hex (a spell, especially an evil spell).
 
-An R package containing simple functions to help me train myself to quickly 'read' a colour from its hex code. I'm colourblind (a deuteranope) so this might be a useful skill.
+A work-in-progress R package containing simple functions to help me train myself to quickly 'read' a colour from its hex code. I'm colourblind (a deuteranope) so this might be a useful skill.
 
+The package functions follow the five steps in [David DeSandro's dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/):
+
+1. Simplify the hex code ✓
+1. Create a bar chart ✓
+1. Assess hue from graph 'shape' ⚠
+1. Assess lightness from total
+1. Assess saturation from range
 
 Install the development version from GitHub with:
  
@@ -37,18 +44,10 @@ Install the development version from GitHub with:
 remotes::install_github("matt-dray/dehex")
 ```
 
-The package functions follow the five steps in [David DeSandro's dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/):
-
-1. Simplify the hex code ✓
-1. Create a bar chart ✓
-1. Assess hue from shape
-1. Assess lightness from total
-1. Assess saturation from range
-
 First, convert a full six-character hex code to its three-character shortcode:
 
 ```{r ex-shorten}
-long <- "#C0FFEE"
+long <- "#E22A31"
 short <- dehex::dh_shorten(long)
 short
 ```
@@ -60,6 +59,20 @@ dehex::dh_graph(short)
 ```
 
 Your IDE will likely show the RGB columns as their respective colours, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+
+Print the RGB graphs for the 12 primary, secondary and tertiary hues against which you can compare the RGB graph for your hex shortcode. Which graph is the best match?
+
+You can print all 12 hues and assess the most similar distribution by eye:
+
+```{r ex-hue}
+dehex::dh_hue()
+```
+
+Or provide the shortcode and let the most similar hue be selected for you (work-in-progress):
+
+```{r ex-hue-auto}
+dehex::dh_hue(short)
+```
 
 ## Code of Conduct
 

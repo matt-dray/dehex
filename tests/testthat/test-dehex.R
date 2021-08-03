@@ -9,3 +9,7 @@ test_that("shortening works", {
 test_that("graph works", {
   expect_error(dh_graph("x"))
 })
+
+test_that("hue graphs work", {
+  expect_error(dh_hue("x"))
+})

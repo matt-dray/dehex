@@ -2,17 +2,20 @@
 % Please edit documentation in R/dehex.R
 \name{dh_graph}
 \alias{dh_graph}
-\title{Print to the Console a Hex Shortcode as an RGB graph}
+\title{Print a Hex Shortcode as an RGB graph}
 \usage{
-dh_graph(hex_short)
+dh_graph(hex_short, text = NULL)
 }
 \arguments{
 \item{hex_short}{Character. A valid hex-colour shortcode starting with a
 hash mark (#) and followed by three alphanumeric characters, which must
 take the values 0 to 9 or A to F (case insensitive).}
+
+\item{text}{Character. An optional string to place above the plot. If NULL
+(default), then the shortcode will be automatically selected.}
 }
 \value{
-"NULL". Prints to the console with cat() a bar chart.
+Nothing. Prints to the console with cat() a bar chart.
 }
 \description{
 Takes a three-character hex colour shortcode and prints to the console a bar

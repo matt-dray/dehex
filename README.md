@@ -18,16 +18,16 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 > To remove a hex (a spell, especially an evil spell).
 
-A work-in-progress R package containing simple functions to help me train myself to
-quickly ‘read’ a colour from its hex code. I’m colourblind (a
-deuteranope) so this might be a useful skill.
+A work-in-progress R package containing simple functions to help me
+train myself to quickly ‘read’ a colour from its hex code. I’m
+colourblind (a deuteranope) so this might be a useful skill.
 
-The package functions follow the five steps in [David DeSandro’s dotCSS
-2018 talk](https://metafizzy.co/blog/read-color-hex-codes/) (ticks mean there's a function for it):
+The package functions follow the five steps in [David DeSandro’s
+dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/):
 
 1.  Simplify the hex code ✓
 2.  Create a bar chart ✓
-3.  Assess hue from shape
+3.  Assess hue from graph ‘shape’ ⚠
 4.  Assess lightness from total
 5.  Assess saturation from range
 
@@ -41,10 +41,10 @@ First, convert a full six-character hex code to its three-character
 shortcode:
 
 ``` r
-long <- "#C0FFEE"
+long <- "#E22A31"
 short <- dehex::dh_shorten(long)
 short
-# [1] "#CFE"
+# [1] "#E23"
 ```
 
 Then print a bar chart to your console that describes the relative
@@ -52,14 +52,100 @@ amounts of red, green and blue described by the shortcode:
 
 ``` r
 dehex::dh_graph(short)
-# #CFE
-# R ████████████░░░
-# G ███████████████
-# B ██████████████░
+# #E23
+# R ██████████████░
+# G ██░░░░░░░░░░░░░
+# B ███░░░░░░░░░░░░
 ```
 
 Your IDE will likely show the RGB columns as their respective colours,
 thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+
+Print the RGB graphs for the 12 primary, secondary and tertiary hues
+against which you can compare the RGB graph for your hex shortcode.
+Which graph is the best match?
+
+You can print all 12 hues and assess the most similar distribution by
+eye:
+
+``` r
+dehex::dh_hue()
+# Red
+# R ███████████████
+# G ░░░░░░░░░░░░░░░
+# B ░░░░░░░░░░░░░░░
+# 
+# Orange
+# R ███████████████
+# G ████████░░░░░░░
+# B ░░░░░░░░░░░░░░░
+# 
+# Yellow
+# R ███████████████
+# G ███████████████
+# B ░░░░░░░░░░░░░░░
+# 
+# Chartreuse
+# R ████████░░░░░░░
+# G ███████████████
+# B ░░░░░░░░░░░░░░░
+# 
+# Green
+# R ░░░░░░░░░░░░░░░
+# G ███████████████
+# B ░░░░░░░░░░░░░░░
+# 
+# Aquamarine
+# R ░░░░░░░░░░░░░░░
+# G ███████████████
+# B ████████░░░░░░░
+# 
+# Cyan
+# R ░░░░░░░░░░░░░░░
+# G ███████████████
+# B ███████████████
+# 
+# Azure
+# R ░░░░░░░░░░░░░░░
+# G ████████░░░░░░░
+# B ███████████████
+# 
+# Blue
+# R ░░░░░░░░░░░░░░░
+# G ░░░░░░░░░░░░░░░
+# B ███████████████
+# 
+# Violet
+# R ████████░░░░░░░
+# G ░░░░░░░░░░░░░░░
+# B ███████████████
+# 
+# Magenta
+# R ███████████████
+# G ░░░░░░░░░░░░░░░
+# B ███████████████
+# 
+# Rose
+# R ███████████████
+# G ░░░░░░░░░░░░░░░
+# B ████████░░░░░░░
+```
+
+Or provide the shortcode and let the most similar hue be selected for
+you (work-in-progress):
+
+``` r
+dehex::dh_hue(short)
+# Your colour: #E23
+# R ██████████████░
+# G ██░░░░░░░░░░░░░
+# B ███░░░░░░░░░░░░
+# 
+# Most similar hue: Red
+# R ███████████████
+# G █░░░░░░░░░░░░░░
+# B █░░░░░░░░░░░░░░
+```
 
 ## Code of Conduct
 

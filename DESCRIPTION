@@ -19,4 +19,5 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     stats,
-    crayon
+    crayon,
+    purrr
