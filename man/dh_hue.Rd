@@ -4,7 +4,7 @@
 \alias{dh_hue}
 \title{Print RGB Graphs to Assess Hue Similarity}
 \usage{
-dh_hue(hex_short = NULL)
+dh_hue()
 }
 \arguments{
 \item{hex_short}{Character. A valid hex-colour shortcode starting with a
@@ -24,5 +24,5 @@ shortcode. Can also return the 'answer' for the hue that's 'closest' to your
 provided hex shortcode.
 }
 \examples{
-dh_hue("#F73")
+dh_hue()
 }

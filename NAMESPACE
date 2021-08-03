@@ -2,4 +2,6 @@
 
 export(dh_graph)
 export(dh_hue)
+export(dh_light)
+export(dh_sat)
 export(dh_shorten)
