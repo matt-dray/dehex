@@ -88,94 +88,39 @@ dh_graph <- function(hex_short, text = NULL, light = FALSE, sat = FALSE) {
 
 }
 
-#' Print RGB Bar Graphs to Demonstrate Hue Profiles
-#'
-#' Print the primary, secondary and tertiary colours in the HSL system as bar
-#' charts of the RGB values that they're composed of. Intended for use as a
-#' reference to assess which RGB profile most closely represents a user's hex
-#' shortcode.
-#'
-#' @return Nothing. Prints bar charts of RGB values to the console, made with
-#'     unicode blocks.
-#' @export
-#'
-#' @examples dh_hue()
-dh_hue <- function() {
 
-  hue_hex <- c(
-    "#F00" = "Red",
-    "#F80" = "Orange",
-    "#FF0" = "Yellow",
-    "#8F0" = "Chartreuse",
-    "#0F0" = "Green",
-    "#0F8" = "Aquamarine",
-    "#0FF" = "Cyan",
-    "#08F" = "Azure",
-    "#00F" = "Blue",
-    "#80F" = "Violet",
-    "#F0F" = "Magenta",
-    "#F08" = "Rose"
-  )
-
-  purrr::walk2(names(hue_hex), hue_hex, dh_graph)
-
-}
-
-#' Print RGB Bar Graphs to Demonstrate Light Profiles
-#'
-#' Print the primary, secondary and tertiary colours in the HSL system as bar
-#' charts of the RGB values that they're composed of. Intended for use as a
-#' reference to assess which RGB profile most closely represents a user's hex
-#' shortcode.
-#'
-#' @param light Logical. Add an optional bar showing where the mean of the RGB
-#'     values falls (i.e. am indicator of lightness)?
-#'
-#' @details The values are light (i.e. high mean value of RGB), middle and dark
-#'     (i.e. small range in RGB values).
-#'
-#' @return Nothing. Prints bar charts of RGB values to the console, made with
-#'     unicode blocks.
-#' @export
-#'
-#' @examples dh_hue()
-dh_light <- function(light = TRUE) {
-
-  light_hex <- c(
-    "#FED" = "Light",
-    "#987" = "Middle",
-    "#321" = "Dark"
-  )
-    purrr::walk2(names(light_hex), light_hex, dh_graph, light = light)
-
-}
-
-#' Print RGB Bar Graphs to Demonstrate Saturation Profiles
+#' Print RGB Bar Graphs as Guides for Hue, Saturation and Light
 #'
 #' Print bar charts of RGB values that represent simplified groupings of
-#' saturation levels in the HSL system. Intended for use as a reference to
-#' assess which RGB profile most closely represents a user's hex shortcode.
+#' hue, saturation or lightness levels in the HSL system. Intended for use as a
+#' reference to assess which RGB profiles most closely represents a user's hex
+#' shortcode.
 #'
-#' @param sat Logical. Add an optional bar showing where the range of the RGB
-#'     values falls (i.e. am indicator of saturation)?
+#' @param type Character. Which of hue ('H'), saturation ('S') or
+#'     light ('L') that you want to print the guide for.
 #'
-#' @details The values are saturated (i.e. the largest range in RGB values)
-#'     washed, muted and grey (i.e. no difference between RGB values).
+#' @details The hue guide prints guides for the primary (red, green, blue),
+#'     secondary (yellow, cyan, magenta) and tertiary (orange, chartreuse,
+#'     aquamarine, azure, violet, rose) hues. For saturation, the guide contains
+#'     'washed' (i.e. the largest range in RGB values), muted, and grey (i.e.
+#'     no difference between RGB  values). In the lightness guide they're
+#'     'light' (i.e.high mean value of RGB), 'middle', and 'dark' (i.e. small
+#'     range in RGB values).
 #'
 #' @return Nothing. Prints bar charts of RGB values to the console, made with
 #'     unicode blocks.
 #' @export
 #'
-#' @examples dh_hue()
-dh_sat <- function(sat = TRUE) {
+#' @examples dh_guide("L")
+dh_guide <- function(type = c("H", "S", "L")) {
 
-  sat_hex <- c(
-    "#F80" = "Saturated",
-    "#D82" = "Washed",
-    "#A85" = "Muted",
-    "#888" = "Grey"
-  )
+  if (!is.character(type) | !type %in% c("H", "S", "L")) {
+    stop("'hsl' must take a single character: 'H', 'S' or 'L'")
+  }
 
-  purrr::walk2(names(sat_hex), sat_hex, ~dh_graph(.x, .y, sat = sat))
+  if (type == "H") .print_hue_guide()
+  if (type == "S") .print_sat_guide()
+  if (type == "L") .print_light_guide()
 
 }
+

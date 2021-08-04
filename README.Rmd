@@ -60,25 +60,24 @@ Then print a bar chart to your console that describes the relative amounts of re
 dehex::dh_graph(short)
 ```
 
-
 Your IDE will likely show the RGB columns as their respective colours, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
 
 You can print the 12 primary, secondary and tertiary hues and assess the one with the most similar RGB distribution to yours:
 
 ```{r ex-hue}
-dehex::dh_hue()
+dehex::dh_guide("H")
 ```
 
 You can also view charts for the three broad lightness (L) categories. The higher the mean value, the lighter the colour is. By default, a marker is added to the chart to indicate the mean RGB value, which can help decide how light the colour is.
 
 ```{r ex-light}
-dehex::dh_light()
+dehex::dh_guide("L")
 ```
 
 You can also compare to the four broad saturation (S) categories. A greater range in RGB values means it's more saturated. By default, a bar is added to show the range of the RGB values.
 
 ```{r ex-sat}
-dehex::dh_sat()
+dehex::dh_guide("S")
 ```
 
 (Additional functionality to be added.)

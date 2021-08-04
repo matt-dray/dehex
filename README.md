@@ -70,7 +70,7 @@ You can print the 12 primary, secondary and tertiary hues and assess the
 one with the most similar RGB distribution to yours:
 
 ``` r
-dehex::dh_hue()
+dehex::dh_guide("H")
 # Red
 # R ███████████████
 # G ░░░░░░░░░░░░░░░
@@ -138,7 +138,7 @@ marker is added to the chart to indicate the mean RGB value, which can
 help decide how light the colour is.
 
 ``` r
-dehex::dh_light()
+dehex::dh_guide("L")
 # Light
 # R ███████████████
 # G ██████████████░
@@ -163,7 +163,7 @@ greater range in RGB values means it’s more saturated. By default, a bar
 is added to show the range of the RGB values.
 
 ``` r
-dehex::dh_sat()
+dehex::dh_guide("S")
 # Saturated
 # R ███████████████
 # G ████████░░░░░░░
