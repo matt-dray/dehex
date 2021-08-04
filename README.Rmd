@@ -64,17 +64,17 @@ You could also generate a random one with `dh_random()`.
 
 ## Bar chart
 
-Use `dh_graph()` to print to the console a bar chart that shows the decimal values of red (R), green (G) and blue (B) for your shortened hex code. The RGB columns are coloured in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+Use `dh_graph()` to print to the console a bar chart that shows the decimal values of red (R), green (G) and blue (B) for your shortened hex code. The RGB columns are printed in colour in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
 
 ```{r ex-graph}
 dehex::dh_graph(short)
 ```
 
-Note that the chart is adorned by extra information that tells you something about the lightness (L, i.e. the RGB average) and saturation (S, i.e. the RGB range). Set the `adorn_*` arguments to `FALSE` to remove these.
+Note that the chart is adorned by extra information that tells you something about the hue (H, i.e. the relative 'rank' of each RGB channel), lightness (L, i.e. the RGB average) and saturation (S, i.e. the RGB range). You can remove these guides by setting the `adorn_*` arguments to `FALSE`.
 
 ## Hue from shape
 
-To assess the hue of your hex code, compare its RGB profile from `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts don't matter; it's the relative values of RGB that we care about.
+To assess the hue of your hex code, compare its RGB profile from `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts don't matter; it's the relative values of RGB that we care about. For this reason, the end of each bar shows you the relative `rank()` of each channel (smallest value is ranked '1' and so on).
 
 ```{r ex-hue}
 dehex::dh_guide("H")
@@ -98,7 +98,7 @@ dehex::dh_guide("S")
 
 ## The solution
 
-You can learn how to describe your hex code's colour by comparing its RGB profile against profiles that describe different hues, saturation and lightness. So our example of `r short` is 'light washed purple'.
+You can learn how to describe your hex code's colour by comparing its RGB profile against profiles that describe different hues, saturation and lightness. So our example of `r short` is 'light washed violet'.
 
 TODO: We probably need a `dh_solve()` function that output the 'correct' answer, which prints the descriptive colour name and each of the relevant HSL charts. It might be good to output  a sample of the colour to a plot as well (both the three- and original six-digit hex codes).
 

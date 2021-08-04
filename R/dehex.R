@@ -76,6 +76,8 @@ dh_random <- function(shorten = FALSE) {
 #'     take the values 0 to 9 or A to F (case insensitive).
 #' @param text Character. An optional string to place above the plot. If NULL
 #'     (default), then the shortcode will be automatically selected.
+#' @param adorn_h Logical. Add an optional value showing the relative rrank of
+#'     the RGB values (i.e. am indicator of hue)? A visual aid.
 #' @param adorn_s Logical. Add an optional bar showing where the range of the RGB
 #'     values falls (i.e. am indicator of saturation)? A visual aid.
 #' @param adorn_l Logical. Add an optional bar showing where the mean of the RGB
@@ -93,6 +95,7 @@ dh_random <- function(shorten = FALSE) {
 #' @examples dh_graph("#D83")
 dh_graph <- function(hex_short,
                      text = NULL,
+                     adorn_h = TRUE,
                      adorn_s = TRUE,
                      adorn_l = TRUE) {
 
@@ -108,7 +111,8 @@ dh_graph <- function(hex_short,
 
   blocks <- .get_blocks()
   blocksets <- .get_rgb_blocksets(
-    blocks, rgb_dec, adorn_s = adorn_s, adorn_l = adorn_l
+    blocks, rgb_dec,
+    adorn_h = adorn_h, adorn_s = adorn_s, adorn_l = adorn_l
   )
 
   cat(
