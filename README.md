@@ -65,96 +65,99 @@ You could also generate a random one with `dh_random()`.
 
 Use `dh_graph()` to print to the console a bar chart that shows the
 decimal values of red (R), green (G) and blue (B) for your shortened hex
-code. The RGB columns are coloured in RStudio, thanks to [the {crayon}
-package](https://github.com/r-lib/crayon).
+code. The RGB columns are printed in colour in RStudio, thanks to [the
+{crayon} package](https://github.com/r-lib/crayon).
 
 ``` r
 dehex::dh_graph(short)
 # #E9F
-# R ███████████████░
-# G ██████████░░░░░░
-# B ████████████████
+# R ███████████████░ H 2
+# G ██████████░░░░░░ H 1
+# B ████████████████ H 3
 # S ░░░░░░░░░███████
 # L ░░░░░░░░░░░░░█░░
 ```
 
 Note that the chart is adorned by extra information that tells you
-something about the lightness (L, i.e. the RGB average) and saturation
-(S, i.e. the RGB range). Set the `adorn_*` arguments to `FALSE` to
-remove these.
+something about the hue (H, i.e. the relative ‘rank’ of each RGB
+channel), lightness (L, i.e. the RGB average) and saturation (S,
+i.e. the RGB range). You can remove these guides by setting the
+`adorn_*` arguments to `FALSE`.
 
 ## Hue from shape
 
 To assess the hue of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts
-don’t matter; it’s the relative values of RGB that we care about.
+don’t matter; it’s the relative values of RGB that we care about. For
+this reason, the end of each bar shows you the relative `rank()` of each
+channel (smallest value is ranked ‘1’ and so on).
 
 ``` r
 dehex::dh_guide("H")
 # Red (primary)
-# R ████████████████
-# G █░░░░░░░░░░░░░░░
-# B █░░░░░░░░░░░░░░░
+# R ████████████████ H 3
+# G █░░░░░░░░░░░░░░░ H 1.5
+# B █░░░░░░░░░░░░░░░ H 1.5
 # 
 # Green (primary)
-# R █░░░░░░░░░░░░░░░
-# G ████████████████
-# B █░░░░░░░░░░░░░░░
+# R █░░░░░░░░░░░░░░░ H 1.5
+# G ████████████████ H 3
+# B █░░░░░░░░░░░░░░░ H 1.5
 # 
 # Blue (primary)
-# R █░░░░░░░░░░░░░░░
-# G █░░░░░░░░░░░░░░░
-# B ████████████████
+# R █░░░░░░░░░░░░░░░ H 1.5
+# G █░░░░░░░░░░░░░░░ H 1.5
+# B ████████████████ H 3
 # 
 # Yellow (secondary)
-# R ████████████████
-# G ████████████████
-# B █░░░░░░░░░░░░░░░
+# R ████████████████ H 2.5
+# G ████████████████ H 2.5
+# B █░░░░░░░░░░░░░░░ H 1
 # 
 # Cyan (secondary)
-# R █░░░░░░░░░░░░░░░
-# G ████████████████
-# B ████████████████
+# R █░░░░░░░░░░░░░░░ H 1
+# G ████████████████ H 2.5
+# B ████████████████ H 2.5
 # 
 # Magenta (secondary)
-# R ████████████████
-# G █░░░░░░░░░░░░░░░
-# B ████████████████
+# R ████████████████ H 2.5
+# G █░░░░░░░░░░░░░░░ H 1
+# B ████████████████ H 2.5
 # 
 # Orange (tertiary)
-# R ████████████████
-# G █████████░░░░░░░
-# B █░░░░░░░░░░░░░░░
+# R ████████████████ H 3
+# G █████████░░░░░░░ H 2
+# B █░░░░░░░░░░░░░░░ H 1
 # 
 # Chartreuse (tertiary)
-# R █████████░░░░░░░
-# G ████████████████
-# B █░░░░░░░░░░░░░░░
+# R █████████░░░░░░░ H 2
+# G ████████████████ H 3
+# B █░░░░░░░░░░░░░░░ H 1
 # 
 # Aquamarine (tertiary)
-# R █░░░░░░░░░░░░░░░
-# G ████████████████
-# B █████████░░░░░░░
+# R █░░░░░░░░░░░░░░░ H 1
+# G ████████████████ H 3
+# B █████████░░░░░░░ H 2
 # 
 # Azure (tertiary)
-# R █░░░░░░░░░░░░░░░
-# G █████████░░░░░░░
-# B ████████████████
+# R █░░░░░░░░░░░░░░░ H 1
+# G █████████░░░░░░░ H 2
+# B ████████████████ H 3
 # 
 # Violet (tertiary)
-# R █████████░░░░░░░
-# G █░░░░░░░░░░░░░░░
-# B ████████████████
+# R █████████░░░░░░░ H 2
+# G █░░░░░░░░░░░░░░░ H 1
+# B ████████████████ H 3
 # 
 # Rose (tertiary)
-# R ████████████████
-# G █░░░░░░░░░░░░░░░
-# B █████████░░░░░░░
+# R ████████████████ H 3
+# G █░░░░░░░░░░░░░░░ H 1
+# B █████████░░░░░░░ H 2
 # 
 # Grey
-# R █████████░░░░░░░
-# G █████████░░░░░░░
-# B █████████░░░░░░░
+# R █████████░░░░░░░ H 2
+# G █████████░░░░░░░ H 2
+# B █████████░░░░░░░ H 2
 ```
 
 ## Lightness from total
@@ -222,7 +225,7 @@ dehex::dh_guide("S")
 
 You can learn how to describe your hex code’s colour by comparing its
 RGB profile against profiles that describe different hues, saturation
-and lightness. So our example of \#E9F is ‘light washed purple’.
+and lightness. So our example of \#E9F is ‘light washed violet’.
 
 TODO: We probably need a `dh_solve()` function that output the ‘correct’
 answer, which prints the descriptive colour name and each of the

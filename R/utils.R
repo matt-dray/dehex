@@ -23,15 +23,21 @@
 
 .get_rgb_blocksets <- function(blocks,
                                rgb_dec,
+                               adorn_h = FALSE,
                                adorn_s = FALSE,
                                adorn_l = FALSE) {
+
+  if (adorn_h) {
+    rgb_dec_rank <- rank(rgb_dec)
+  }
 
   blockset <- purrr::set_names(
     purrr::map(
       c("R", "G", "B"),
       ~c(
         rep(blocks[["full"]], rgb_dec[.x] + 1),
-        rep(blocks[["empty"]], 15 - rgb_dec[.x])
+        rep(blocks[["empty"]], 15 - rgb_dec[.x]),
+        ifelse(adorn_h, paste(" H", rgb_dec_rank[.x]), "")
       )
     ),
     c("R", "G", "B")
@@ -103,7 +109,7 @@
   purrr::walk2(
     names(light_hex),
     light_hex,
-    dh_graph, adorn_s = FALSE
+    dh_graph, adorn_h = FALSE, adorn_s = FALSE
   )
 
 }
@@ -120,7 +126,7 @@
   purrr::walk2(
     names(sat_hex),
     sat_hex,
-    dh_graph, adorn_l = FALSE
+    dh_graph, adorn_h = FALSE, adorn_l = FALSE
   )
 
 }
