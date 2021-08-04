@@ -65,11 +65,11 @@ Then print a bar chart to your console that describes the relative amounts of re
 dehex::dh_graph(short)
 ```
 
-It also adds a couple more bars to show you information about the saturation (S, i.e. the range of RGB values) and lightness (L, the 'average' RGB value).
+It also adds a couple more bars to show you information about the saturation (S, i.e. the range of RGB values) and lightness (L, the 'average' RGB value). You can set the `adorn_*` arguments to `FALSE` if you just want the RGB bars.
 
 Your IDE (at least RStudio) will show the RGB columns as their respective colours, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
 
-You can print the 12 primary, secondary and tertiary hues and assess the one with the most similar RGB distribution to yours:
+You can print the 12 hues (plus grey) and assess the one with the most similar RGB distribution to yours:
 
 ```{r ex-hue}
 dehex::dh_guide("H")

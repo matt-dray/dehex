@@ -68,81 +68,87 @@ dehex::dh_graph(short)
 # R █████████░░░░░░
 # G ██░░░░░░░░░░░░░
 # B ████████████░░░
-# L ░░░░░░░█░░░░░░░
 # S ░███████████░░░
+# L ░░░░░░░█░░░░░░░
 ```
 
 It also adds a couple more bars to show you information about the
 saturation (S, i.e. the range of RGB values) and lightness (L, the
-‘average’ RGB value).
+‘average’ RGB value). You can set the `adorn_*` arguments to `FALSE` if
+you just want the RGB bars.
 
 Your IDE (at least RStudio) will show the RGB columns as their
 respective colours, thanks to [the {crayon}
 package](https://github.com/r-lib/crayon).
 
-You can print the 12 primary, secondary and tertiary hues and assess the
-one with the most similar RGB distribution to yours:
+You can print the 12 hues (plus grey) and assess the one with the most
+similar RGB distribution to yours:
 
 ``` r
 dehex::dh_guide("H")
-# Red
+# Red (primary)
 # R ███████████████
 # G ░░░░░░░░░░░░░░░
 # B ░░░░░░░░░░░░░░░
 # 
-# Orange
-# R ███████████████
-# G ████████░░░░░░░
-# B ░░░░░░░░░░░░░░░
-# 
-# Yellow
-# R ███████████████
-# G ███████████████
-# B ░░░░░░░░░░░░░░░
-# 
-# Chartreuse
-# R ████████░░░░░░░
-# G ███████████████
-# B ░░░░░░░░░░░░░░░
-# 
-# Green
+# Green (primary)
 # R ░░░░░░░░░░░░░░░
 # G ███████████████
 # B ░░░░░░░░░░░░░░░
 # 
-# Aquamarine
+# Blue (primary)
+# R ░░░░░░░░░░░░░░░
+# G ░░░░░░░░░░░░░░░
+# B ███████████████
+# 
+# Yellow (secondary)
+# R ███████████████
+# G ███████████████
+# B ░░░░░░░░░░░░░░░
+# 
+# Cyan (secondary)
+# R ░░░░░░░░░░░░░░░
+# G ███████████████
+# B ███████████████
+# 
+# Magenta (secondary)
+# R ███████████████
+# G ░░░░░░░░░░░░░░░
+# B ███████████████
+# 
+# Orange (tertiary)
+# R ███████████████
+# G ████████░░░░░░░
+# B ░░░░░░░░░░░░░░░
+# 
+# Chartreuse (tertiary)
+# R ████████░░░░░░░
+# G ███████████████
+# B ░░░░░░░░░░░░░░░
+# 
+# Aquamarine (tertiary)
 # R ░░░░░░░░░░░░░░░
 # G ███████████████
 # B ████████░░░░░░░
 # 
-# Cyan
-# R ░░░░░░░░░░░░░░░
-# G ███████████████
-# B ███████████████
-# 
-# Azure
+# Azure (tertiary)
 # R ░░░░░░░░░░░░░░░
 # G ████████░░░░░░░
 # B ███████████████
 # 
-# Blue
-# R ░░░░░░░░░░░░░░░
-# G ░░░░░░░░░░░░░░░
-# B ███████████████
-# 
-# Violet
+# Violet (tertiary)
 # R ████████░░░░░░░
 # G ░░░░░░░░░░░░░░░
 # B ███████████████
 # 
-# Magenta
+# Rose (tertiary)
 # R ███████████████
 # G ░░░░░░░░░░░░░░░
-# B ███████████████
+# B ████████░░░░░░░
 # 
-# Rose
-# R ███████████████
-# G ░░░░░░░░░░░░░░░
+# Grey
+# R ████████░░░░░░░
+# G ████████░░░░░░░
 # B ████████░░░░░░░
 ```
 

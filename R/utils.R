@@ -21,7 +21,10 @@
   list(full = "\U2588", empty = "\U2591")
 }
 
-.get_rgb_blocksets <- function(blocks, rgb_dec, light = FALSE, sat = FALSE) {
+.get_rgb_blocksets <- function(blocks,
+                               rgb_dec,
+                               adorn_s = FALSE,
+                               adorn_l = FALSE) {
 
   blockset <- purrr::set_names(
     purrr::map(
@@ -34,8 +37,7 @@
     c("R", "G", "B")
   )
 
-  if (light) {
-
+  if (adorn_l) {
 
     blockset_mean <-
       stats::setNames(rep(blocks[["empty"]], 15), as.character(1:15))
@@ -45,7 +47,7 @@
 
   }
 
-  if (sat) {
+  if (adorn_s) {
 
     rgb_min <- min(rgb_dec)
     rgb_max <- max(rgb_dec)
@@ -65,21 +67,26 @@
 .print_hue_guide <- function() {
 
   hue_hex <- c(
-    "#F00" = "Red",
-    "#F80" = "Orange",
-    "#FF0" = "Yellow",
-    "#8F0" = "Chartreuse",
-    "#0F0" = "Green",
-    "#0F8" = "Aquamarine",
-    "#0FF" = "Cyan",
-    "#08F" = "Azure",
-    "#00F" = "Blue",
-    "#80F" = "Violet",
-    "#F0F" = "Magenta",
-    "#F08" = "Rose"
+    "#F00" = "Red (primary)",
+    "#0F0" = "Green (primary)",
+    "#00F" = "Blue (primary)",
+    "#FF0" = "Yellow (secondary)",
+    "#0FF" = "Cyan (secondary)",
+    "#F0F" = "Magenta (secondary)",
+    "#F80" = "Orange (tertiary)",
+    "#8F0" = "Chartreuse (tertiary)",
+    "#0F8" = "Aquamarine (tertiary)",
+    "#08F" = "Azure (tertiary)",
+    "#80F" = "Violet (tertiary)",
+    "#F08" = "Rose (tertiary)",
+    "#888" = "Grey"
   )
 
-  purrr::walk2(names(hue_hex), hue_hex, dh_graph, light = FALSE, sat = FALSE)
+  purrr::walk2(
+    names(hue_hex),
+    hue_hex,
+    dh_graph, adorn_s = FALSE, adorn_l = FALSE
+  )
 
 }
 
@@ -91,7 +98,11 @@
     "#321" = "Dark"
   )
 
-  purrr::walk2(names(light_hex), light_hex, dh_graph, sat = FALSE)
+  purrr::walk2(
+    names(light_hex),
+    light_hex,
+    dh_graph, adorn_s = FALSE
+  )
 
 }
 
@@ -104,6 +115,10 @@
     "#888" = "Grey"
   )
 
-  purrr::walk2(names(sat_hex), sat_hex, ~dh_graph(.x, .y, light = FALSE))
+  purrr::walk2(
+    names(sat_hex),
+    sat_hex,
+    dh_graph, adorn_l = FALSE
+  )
 
 }

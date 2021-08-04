@@ -76,10 +76,10 @@ dh_random <- function(shorten = FALSE) {
 #'     take the values 0 to 9 or A to F (case insensitive).
 #' @param text Character. An optional string to place above the plot. If NULL
 #'     (default), then the shortcode will be automatically selected.
-#' @param light Logical. Add an optional bar showing where the mean of the RGB
-#'     values falls (i.e. am indicator of lightness)?
-#' @param sat Logical. Add an optional bar showing where the range of the RGB
-#'     values falls (i.e. am indicator of saturation)?
+#' @param adorn_s Logical. Add an optional bar showing where the range of the RGB
+#'     values falls (i.e. am indicator of saturation)? A visual aid.
+#' @param adorn_l Logical. Add an optional bar showing where the mean of the RGB
+#'     values falls (i.e. am indicator of lightness)? A visual aid.
 #'
 #' @details The amount of red (R), green (G) and blue (B) is calculated on the
 #'     basis that hex shortcodes contain one character for each colour. Since
@@ -91,7 +91,10 @@ dh_random <- function(shorten = FALSE) {
 #' @export
 #'
 #' @examples dh_graph("#D83")
-dh_graph <- function(hex_short, text = NULL, light = TRUE, sat = TRUE) {
+dh_graph <- function(hex_short,
+                     text = NULL,
+                     adorn_s = TRUE,
+                     adorn_l = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{3})$", hex_short)) {
     stop("'hex_code' must be a valid 3-character hex code starting '#'.")
@@ -104,15 +107,17 @@ dh_graph <- function(hex_short, text = NULL, light = TRUE, sat = TRUE) {
   rgb_dec        <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
 
   blocks    <- .get_blocks()
-  blocksets <- .get_rgb_blocksets(blocks, rgb_dec, light = light, sat = sat)
+  blocksets <- .get_rgb_blocksets(
+    blocks, rgb_dec, adorn_s = adorn_s, adorn_l = adorn_l
+  )
 
   cat(
     ifelse(is.null(text), hex_short, text), "\n",
     crayon::red(  c("R ", blocksets$R, "\n")),
     crayon::green(c("G ", blocksets$G, "\n")),
     crayon::blue( c("B ", blocksets$B, "\n")),
-    if (light) c("L ", blocksets$L, "\n"),
-    if (sat) c("S ", blocksets$S, "\n"),
+    if (adorn_s) c("S ", blocksets$S, "\n"),
+    if (adorn_l) c("L ", blocksets$L, "\n"),
     "\n",
     sep = ""
   )
