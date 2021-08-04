@@ -103,10 +103,10 @@ dh_graph <- function(hex_short,
   hex_short <- toupper(hex_short)
 
   hex2dec_lookup <- .get_hex2dec()
-  rgb_hex        <- .get_rgb_hex(hex_short)
-  rgb_dec        <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
+  rgb_hex <- .get_rgb_hex(hex_short)
+  rgb_dec <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
 
-  blocks    <- .get_blocks()
+  blocks <- .get_blocks()
   blocksets <- .get_rgb_blocksets(
     blocks, rgb_dec, adorn_s = adorn_s, adorn_l = adorn_l
   )
