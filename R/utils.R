@@ -1,6 +1,6 @@
 
-.get_hex2dec <- function(dec_vals = 0:15) {
-  stats::setNames(c(dec_vals), c(0:9, LETTERS[1:6]))
+.get_hex2dec <- function() {
+  stats::setNames(0:15, c(0:9, LETTERS[1:6]))
 }
 
 .get_rgb_hex <- function(hex_short) {
@@ -30,7 +30,7 @@
     purrr::map(
       c("R", "G", "B"),
       ~c(
-        rep(blocks[["full"]], rgb_dec[.x]),
+        rep(blocks[["full"]], rgb_dec[.x] + 1),
         rep(blocks[["empty"]], 15 - rgb_dec[.x])
       )
     ),
@@ -40,8 +40,9 @@
   if (adorn_l) {
 
     blockset_mean <-
-      stats::setNames(rep(blocks[["empty"]], 15), as.character(1:15))
-    blockset_mean[round(mean(rgb_dec))] <- blocks[["full"]]
+      stats::setNames(rep(blocks[["empty"]], 16), as.character(1:16))
+
+    blockset_mean[round(mean(rgb_dec)) + 1] <- blocks[["full"]]
 
     blockset <- c(blockset, list("L" = blockset_mean))
 
@@ -53,8 +54,9 @@
     rgb_max <- max(rgb_dec)
 
     blockset_range <-
-      stats::setNames(rep(blocks[["empty"]], 15), as.character(1:15))
-    blockset_range[rgb_min:rgb_max] <- blocks[["full"]]
+      stats::setNames(rep(blocks[["empty"]], 16), as.character(1:16))
+
+    blockset_range[(rgb_min + 1):(rgb_max + 1)] <- blocks[["full"]]
 
     blockset <- c(blockset, list("S" = blockset_range))
 
