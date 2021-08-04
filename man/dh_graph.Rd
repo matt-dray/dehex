@@ -4,7 +4,7 @@
 \alias{dh_graph}
 \title{Print a Hex Shortcode as an RGB graph}
 \usage{
-dh_graph(hex_short, text = NULL, light = FALSE, sat = FALSE)
+dh_graph(hex_short, text = NULL, light = TRUE, sat = TRUE)
 }
 \arguments{
 \item{hex_short}{Character. A valid hex-colour shortcode starting with a

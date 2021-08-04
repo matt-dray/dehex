@@ -68,10 +68,17 @@ dehex::dh_graph(short)
 # R █████████░░░░░░
 # G ██░░░░░░░░░░░░░
 # B ████████████░░░
+# L ░░░░░░░█░░░░░░░
+# S ░███████████░░░
 ```
 
-Your IDE will likely show the RGB columns as their respective colours,
-thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+It also adds a couple more bars to show you information about the
+saturation (S, i.e. the range of RGB values) and lightness (L, the
+‘average’ RGB value).
+
+Your IDE (at least RStudio) will show the RGB columns as their
+respective colours, thanks to [the {crayon}
+package](https://github.com/r-lib/crayon).
 
 You can print the 12 primary, secondary and tertiary hues and assess the
 one with the most similar RGB distribution to yours:

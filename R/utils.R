@@ -79,11 +79,11 @@
     "#F08" = "Rose"
   )
 
-  purrr::walk2(names(hue_hex), hue_hex, dh_graph)
+  purrr::walk2(names(hue_hex), hue_hex, dh_graph, light = FALSE, sat = FALSE)
 
 }
 
-.print_light_guide <- function(light = TRUE) {
+.print_light_guide <- function() {
 
   light_hex <- c(
     "#FED" = "Light",
@@ -91,11 +91,11 @@
     "#321" = "Dark"
   )
 
-  purrr::walk2(names(light_hex), light_hex, dh_graph, light = light)
+  purrr::walk2(names(light_hex), light_hex, dh_graph, sat = FALSE)
 
 }
 
-.print_sat_guide <- function(sat = TRUE) {
+.print_sat_guide <- function() {
 
   sat_hex <- c(
     "#F80" = "Saturated",
@@ -104,6 +104,6 @@
     "#888" = "Grey"
   )
 
-  purrr::walk2(names(sat_hex), sat_hex, ~dh_graph(.x, .y, sat = sat))
+  purrr::walk2(names(sat_hex), sat_hex, ~dh_graph(.x, .y, light = FALSE))
 
 }

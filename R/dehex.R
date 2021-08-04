@@ -91,7 +91,7 @@ dh_random <- function(shorten = FALSE) {
 #' @export
 #'
 #' @examples dh_graph("#D83")
-dh_graph <- function(hex_short, text = NULL, light = FALSE, sat = FALSE) {
+dh_graph <- function(hex_short, text = NULL, light = TRUE, sat = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{3})$", hex_short)) {
     stop("'hex_code' must be a valid 3-character hex code starting '#'.")
