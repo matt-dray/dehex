@@ -25,9 +25,8 @@ deuteranope) so this might be a useful skill.
 ⚠ The package is very much a work-in-progress and things may change or
 break at any time.
 
-The package functions follow the five steps in [David DeSandro’s
-dotCSS 2018 talk](https://metafizzy.co/blog/read-color-hex-codes/)
-([thanks
+The package functions follow the five steps in [David DeSandro’s dotCSS
+2018 talk](https://metafizzy.co/blog/read-color-hex-codes/) ([thanks
 Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)):
 
 1.  Simplify the hex code
@@ -43,24 +42,32 @@ remotes::install_github("matt-dray/dehex")
 ```
 
 First, convert a full six-character hex code to its three-character
-shortcode:
+shortcode. We can generate a random one for our purposes.
 
 ``` r
-long <- "#E22A31"
+set.seed(352)
+long <- dehex::dh_random()
+long
+# [1] "#9125CB"
+
 short <- dehex::dh_shorten(long)
 short
-# [1] "#E23"
+# [1] "#92C"
 ```
+
+(You could just pass the argument `shorten = TRUE` to `dh_random()` to
+get a random three-character hex code, but I wanted to show you
+`sh_shorten()` in action.)
 
 Then print a bar chart to your console that describes the relative
 amounts of red, green and blue described by the shortcode:
 
 ``` r
 dehex::dh_graph(short)
-# #E23
-# R ██████████████░
+# #92C
+# R █████████░░░░░░
 # G ██░░░░░░░░░░░░░
-# B ███░░░░░░░░░░░░
+# B ████████████░░░
 ```
 
 Your IDE will likely show the RGB columns as their respective colours,

@@ -46,13 +46,18 @@ Install the development version from GitHub with:
 remotes::install_github("matt-dray/dehex")
 ```
 
-First, convert a full six-character hex code to its three-character shortcode:
+First, convert a full six-character hex code to its three-character shortcode. We can generate a random one for our purposes.
 
 ```{r ex-shorten}
-long <- "#E22A31"
+set.seed(352)
+long <- dehex::dh_random()
+long
+
 short <- dehex::dh_shorten(long)
 short
 ```
+
+(You could just pass the argument `shorten = TRUE` to `dh_random()` to get a random three-character hex code, but I wanted to show you `sh_shorten()` in action.)
 
 Then print a bar chart to your console that describes the relative amounts of red, green and blue described by the shortcode:
 

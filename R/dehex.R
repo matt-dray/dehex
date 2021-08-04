@@ -33,6 +33,37 @@ dh_shorten <- function(hex_code) {
 
 }
 
+#' Generate a Random Hex Colour Code
+#'
+#' The purpose of \{dehex\} is to train how to 'read' the colour from a hex code.
+#' This function generates a random hex code for you so you can test your skills.
+#'
+#' @param shorten Logical. Shorten six-character hex colour code to three
+#'     characters? The three-character hex code is what is used to interpret
+#'     the colour in the \{dehex\} 'training' context.
+#'
+#' @return Character string of length one. A three- or six-character hex code
+#'     preceded by a hash mark, '#'.
+#' @export
+#'
+#' @examples dh_random(TRUE)
+dh_random <- function(shorten = FALSE) {
+
+  if (!is.logical(shorten)) {
+    stop("'shorten' must be either TRUE or FALSE.")
+  }
+
+  hex <- paste0(
+    "#",
+    paste(sample(c(1:9, LETTERS[1:6]), 6, replace = TRUE), collapse = "")
+  )
+
+  if (shorten) hex <- dh_shorten(hex)
+
+  return(hex)
+
+}
+
 #' Print a Hex Shortcode as an RGB graph
 #'
 #' Takes a three-character hex colour shortcode and prints to the console a bar
@@ -115,7 +146,7 @@ dh_graph <- function(hex_short, text = NULL, light = FALSE, sat = FALSE) {
 dh_guide <- function(type = c("H", "S", "L")) {
 
   if (!is.character(type) | !type %in% c("H", "S", "L")) {
-    stop("'hsl' must take a single character: 'H', 'S' or 'L'")
+    stop("'hsl' must take a single character: 'H', 'S' or 'L'.")
   }
 
   if (type == "H") .print_hue_guide()
