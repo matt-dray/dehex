@@ -166,15 +166,22 @@ dh_guide <- function(type = c("H", "S", "L")) {
 
 #' Describe in Words a Colour from its Hex Code
 #'
+#' Convert a colour hex code to an English string that roughly describes its
+#' colour in terms of hue, saturation and lightness, like 'dark saturated
+#' azure'.
+#'
 #' @param hex_code Character. A valid hex colour code starting with a hash mark
 #'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
+#' @param graphs Logical. Do you want to print the result and associated hue,
+#'     saturation and lightness bar charts to the console? Defaults to TRUE. If
+#'     FALSE, the answer will be returned as a single character string.
 #'
-#' @return Character. A string describing the input hex colour in words, like
-#'     'middle saturated azure'.
+#' @return Either nothing, but results printed to the console (i.e. when
+#'     graphs = TRUE), or a single character string (i.e. when graphs = FALSE).
 #'
 #' @export
-#' @examples dh_solve("#08F")
-dh_solve <- function(hex_code) {
+#' @examples dh_solve("#08F", graphs = FALSE)
+dh_solve <- function(hex_code, graphs = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
     stop(
@@ -207,10 +214,10 @@ dh_solve <- function(hex_code) {
 
   # User's saturation solved
   sat_solved <- dplyr::case_when(
-    user_range == 1 ~ "Grey",
-    user_range >= 2  & user_range <= 4  ~ "muted",
-    user_range >= 5  & user_range <= 9  ~ "washed",
-    user_range >= 10 & user_range <= 16 ~ "saturated",
+    user_range == 0 ~ "grey",
+    user_range >= 1  & user_range <= 5  ~ "muted",
+    user_range >= 6  & user_range <= 11  ~ "washed",
+    user_range >= 12 & user_range <= 16 ~ "saturated",
     TRUE ~ "ERROR"
   )
 
@@ -222,7 +229,44 @@ dh_solve <- function(hex_code) {
     TRUE ~ "ERROR"
   )
 
-  paste(light_solved, sat_solved, hue_solved)
+  if (!graphs) {
+
+    return(paste(light_solved, sat_solved, hue_solved))
+
+  }
+
+  if (graphs) {
+
+    cat(
+      hex_code, "is",
+      paste(light_solved, sat_solved, hue_solved),
+      "\n\n"
+    )
+
+    dh_graph(
+      hex_short,
+      paste("input code:", hex_short),
+    )
+
+    dh_graph(
+      .get_rgb2name("H")[hue_solved],
+      paste("hue:", hue_solved),
+      adorn_s = FALSE, adorn_l = FALSE
+    )
+
+    dh_graph(
+      .get_rgb2name("S")[sat_solved],
+      paste("saturation:", sat_solved),
+      adorn_h = FALSE, adorn_l = FALSE
+    )
+
+    dh_graph(
+      .get_rgb2name("L")[light_solved],
+      paste("lightness:", light_solved),
+      adorn_h = FALSE, adorn_s = FALSE
+    )
+
+  }
 
 }
 
