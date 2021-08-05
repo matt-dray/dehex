@@ -4,7 +4,7 @@
 \alias{dh_solve}
 \title{Describe in Words a Colour from its Hex Code}
 \usage{
-dh_solve(hex_code, graphs = TRUE)
+dh_solve(hex_code, graphs = TRUE, swatch = TRUE)
 }
 \arguments{
 \item{hex_code}{Character. A valid hex colour code starting with a hash mark
@@ -13,6 +13,9 @@ dh_solve(hex_code, graphs = TRUE)
 \item{graphs}{Logical. Do you want to print the result and associated hue,
 saturation and lightness bar charts to the console? Defaults to TRUE. If
 FALSE, the answer will be returned as a single character string.}
+
+\item{swatch}{Logical. Print to a graphical device a plot of the colour
+represented by (three-digit) hex code?}
 }
 \value{
 Either nothing, but results printed to the console (i.e. when
