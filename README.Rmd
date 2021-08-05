@@ -57,7 +57,7 @@ remotes::install_github("matt-dray/dehex")
 First, convert a full six-character hex code to its three-character shortcode. This takes the first value from each pair of characters.
 
 ```{r ex-shorten}
-long <- "#E69DFB"
+long <- "#6BCFFA"
 short <- dehex::dh_shorten(long)
 short
 ```
@@ -113,7 +113,7 @@ dehex::dh_guide("L")
 Luckily, `dh_solve()` returns the 'answer' for your colour. So, for our input `r short`, the 'answer' is:
 
 ```{r ex-solve}
-dehex::dh_solve(short, graphs = FALSE)
+dehex::dh_solve(short, graphs = FALSE, swatch = FALSE)
 ```
 
 Of course, you could just use this function to get a simple way of communicating colour from hex codes without learning how to do it by 'reading' a hex code yourself.
@@ -121,7 +121,13 @@ Of course, you could just use this function to get a simple way of communicating
 You can also ask to return the relevant bar charts that best describe the hue, saturation and lightness that led to the result.
 
 ```{r ex-solve2}
-dehex::dh_solve(short)
+dehex::dh_solve(short, swatch = FALSE)
+```
+
+And if you're wondering what the colour actually is, you can either set `swatch = FALSE` in `dh_solve()`, or use `dh_swatch()`.
+
+```{r ex-swatch, fig.alt="A square of colour with its three-digit hex colour code in text in the centre."}
+dehex::dh_swatch(short)
 ```
 
 ## Code of Conduct

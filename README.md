@@ -55,10 +55,10 @@ First, convert a full six-character hex code to its three-character
 shortcode. This takes the first value from each pair of characters.
 
 ``` r
-long <- "#E69DFB"
+long <- "#6BCFFA"
 short <- dehex::dh_shorten(long)
 short
-# [1] "#E9F"
+# [1] "#6CF"
 ```
 
 You could also generate a random one with `dh_random()`.
@@ -72,12 +72,12 @@ code. The RGB columns are printed in colour in RStudio, thanks to [the
 
 ``` r
 dehex::dh_graph(short)
-# #E9F
-# R ███████████████░ H 2
-# G ██████████░░░░░░ H 1
+# #6CF
+# R ███████░░░░░░░░░ H 1
+# G █████████████░░░ H 2
 # B ████████████████ H 3
-# S ░░░░░░░░░███████
-# L ░░░░░░░░░░░░░█░░
+# S ░░░░░░██████████
+# L ░░░░░░░░░░░█░░░░
 ```
 
 Note that the chart is adorned by extra information that tells you
@@ -253,11 +253,11 @@ dehex::dh_guide("L")
 ## The solution
 
 Luckily, `dh_solve()` returns the ‘answer’ for your colour. So, for our
-input \#E9F, the ‘answer’ is:
+input \#6CF, the ‘answer’ is:
 
 ``` r
-dehex::dh_solve(short, graphs = FALSE)
-# [1] "light washed violet"
+dehex::dh_solve(short, graphs = FALSE, swatch = FALSE)
+# [1] "light washed azure"
 ```
 
 Of course, you could just use this function to get a simple way of
@@ -268,19 +268,19 @@ You can also ask to return the relevant bar charts that best describe
 the hue, saturation and lightness that led to the result.
 
 ``` r
-dehex::dh_solve(short)
-# #E9F is light washed violet 
+dehex::dh_solve(short, swatch = FALSE)
+# #6CF is light washed azure 
 # 
-# input code: #E9F
-# R ███████████████░ H 2
-# G ██████████░░░░░░ H 1
+# input code: #6CF
+# R ███████░░░░░░░░░ H 1
+# G █████████████░░░ H 2
 # B ████████████████ H 3
-# S ░░░░░░░░░███████
-# L ░░░░░░░░░░░░░█░░
+# S ░░░░░░██████████
+# L ░░░░░░░░░░░█░░░░
 # 
-# hue: violet
-# R █████████░░░░░░░ H 2
-# G █░░░░░░░░░░░░░░░ H 1
+# hue: azure
+# R █░░░░░░░░░░░░░░░ H 1
+# G █████████░░░░░░░ H 2
 # B ████████████████ H 3
 # 
 # saturation: washed
@@ -295,6 +295,15 @@ dehex::dh_solve(short)
 # B ██████████████░░
 # L ░░░░░░░░░░░░░░█░
 ```
+
+And if you’re wondering what the colour actually is, you can either set
+`swatch = FALSE` in `dh_solve()`, or use `dh_swatch()`.
+
+``` r
+dehex::dh_swatch(short)
+```
+
+<img src="man/figures/README-ex-swatch-1.png" title="A square of colour with its three-digit hex colour code in text in the centre." alt="A square of colour with its three-digit hex colour code in text in the centre." width="100%" />
 
 ## Code of Conduct
 

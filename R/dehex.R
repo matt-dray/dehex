@@ -175,13 +175,15 @@ dh_guide <- function(type = c("H", "S", "L")) {
 #' @param graphs Logical. Do you want to print the result and associated hue,
 #'     saturation and lightness bar charts to the console? Defaults to TRUE. If
 #'     FALSE, the answer will be returned as a single character string.
+#' @param swatch Logical. Print to a graphical device a plot of the colour
+#'     represented by (three-digit) hex code?
 #'
 #' @return Either nothing, but results printed to the console (i.e. when
 #'     graphs = TRUE), or a single character string (i.e. when graphs = FALSE).
 #'
 #' @export
 #' @examples dh_solve("#08F", graphs = FALSE)
-dh_solve <- function(hex_code, graphs = TRUE) {
+dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
     stop(
@@ -268,5 +270,45 @@ dh_solve <- function(hex_code, graphs = TRUE) {
 
   }
 
+  if (swatch) {
+
+    dh_swatch(hex_short)
+
+  }
+
 }
 
+#' Plot a Short Colour Hex Code
+#'
+#' @param hex_code Character. A valid hex colour code starting with a hash mark
+#'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
+#'
+#' @return A plot.
+#' @export
+#'
+#' @examples dh_swatch("#F14362")
+dh_swatch <- function(hex_code) {
+
+  if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
+    stop(
+      "'hex_code' must be a valid 3- or 6-character hex code starting with '#'."
+    )
+  }
+
+  if (grepl("^#[[:xdigit:]]{6}$", hex_code)) {
+    hex_code <- dh_shorten(hex_code)
+  }
+
+  hex_short <- toupper(hex_code)
+  hex_doubleup <- paste(
+    strsplit(hex_short, "")[[1]][c(1, 2, 2, 3, 3, 4, 4)],
+    collapse = ""
+  )
+
+  def_par <- graphics::par(no.readonly = TRUE)
+  graphics::par(mar = rep(0, 4))
+  graphics::image(matrix(1, 1), col = hex_doubleup, axes = FALSE)
+  graphics::text(0, 0, hex_short)
+  graphics::par(def_par)
+
+}

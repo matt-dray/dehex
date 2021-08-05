@@ -21,4 +21,5 @@ Imports:
     stats,
     crayon,
     purrr,
-    dplyr
+    dplyr,
+    graphics
