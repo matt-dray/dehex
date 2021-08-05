@@ -4,19 +4,25 @@
 \alias{dh_solve}
 \title{Describe in Words a Colour from its Hex Code}
 \usage{
-dh_solve(hex_code)
+dh_solve(hex_code, graphs = TRUE)
 }
 \arguments{
 \item{hex_code}{Character. A valid hex colour code starting with a hash mark
 (#). Characters must take the values 0 to 9 or A to F (case insensitive).}
+
+\item{graphs}{Logical. Do you want to print the result and associated hue,
+saturation and lightness bar charts to the console? Defaults to TRUE. If
+FALSE, the answer will be returned as a single character string.}
 }
 \value{
-Character. A string describing the input hex colour in words, like
-'middle saturated azure'.
+Either nothing, but results printed to the console (i.e. when
+graphs = TRUE), or a single character string (i.e. when graphs = FALSE).
 }
 \description{
-Describe in Words a Colour from its Hex Code
+Convert a colour hex code to an English string that roughly describes its
+colour in terms of hue, saturation and lightness, like 'dark saturated
+azure'.
 }
 \examples{
-dh_solve("#08F")
+dh_solve("#08F", graphs = FALSE)
 }

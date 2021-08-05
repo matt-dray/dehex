@@ -19,29 +19,31 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 > To remove a hex (a spell, especially an evil spell).
 
 An R package containing simple functions to help me train myself to
-quickly ‘read’ a colour from its hex code. I’m colourblind (a
-deuteranope) so this might be a useful skill.
+‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
+this might be a useful skill.
 
-⚠ The package is very much a work-in-progress and things may change or
-break at any time.
+## The DeSandro method
 
-The package functions follow the five steps in [David DeSandro’s dotCSS
-2018 talk](https://metafizzy.co/blog/read-color-hex-codes/) ([thanks
-Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)):
+[David DeSandro gave a talk at dotCSS
+2018](https://metafizzy.co/blog/read-color-hex-codes/) about ‘reading’
+colour hex codes by eye to get a colour like dark saturated orange’
+([thanks
+Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)).
 
-1.  Three-digit shorthand
-2.  Bar chart
-3.  Hue from shape
-4.  Lightness from total
-5.  Saturation from range
+There are five steps:
 
-You simplify your hex code, convert it to a bar chart of its RGB values,
-and then assess that for hue, lightness and saturation. The result is a
-colour name in the form ‘dark muted azure’, for example
+1.  Simplify from a six- to a three-digit hex code
+2.  Create an RGB bar chart from the short hex code
+3.  Assess hue from the chart ‘shape’
+4.  Assess saturation from the RGB range
+5.  Assess lightness from the RGB total
+
+This package contains functions that guide you through that process and
+can ‘solve’ the hex code for you.
 
 ## Install
 
-Install the development version from GitHub with:
+You can install the development version from GitHub.
 
 ``` r
 remotes::install_github("matt-dray/dehex")
@@ -80,17 +82,28 @@ dehex::dh_graph(short)
 
 Note that the chart is adorned by extra information that tells you
 something about the hue (H, i.e. the relative ‘rank’ of each RGB
-channel), lightness (L, i.e. the RGB average) and saturation (S,
-i.e. the RGB range). You can remove these guides by setting the
-`adorn_*` arguments to `FALSE`.
+channel), saturation (S, i.e. the RGB range) and lightness (L, i.e. the
+RGB average). You can remove these guides by setting the `adorn_*`
+arguments to `FALSE`.
 
-## Hue from shape
+The idea is to compare this to a set of guides that provide rough
+categorisations of hue, saturation and lightness to generate an English
+phrase.
+
+## Guides
+
+### Hue from shape
 
 To assess the hue of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts
 don’t matter; it’s the relative values of RGB that we care about. For
 this reason, the end of each bar shows you the relative `rank()` of each
 channel (smallest value is ranked ‘1’ and so on).
+
+<details>
+<summary>
+Click to see the hue guides
+</summary>
 
 ``` r
 dehex::dh_guide("H")
@@ -160,39 +173,18 @@ dehex::dh_guide("H")
 # B █████████░░░░░░░ H 2
 ```
 
-## Lightness from total
+</details>
 
-To assess the lightness of your hex code, compare its RGB profile from
-`dh_graph()` to the guide provided by `dh_guide("L")`. A higher total
-RGB means it’s lighter in colour, but I’ve chosen to show the mean value
-as a guide.
-
-``` r
-dehex::dh_guide("L")
-# light
-# R ████████████████
-# G ███████████████░
-# B ██████████████░░
-# L ░░░░░░░░░░░░░░█░
-# 
-# middle
-# R ██████████░░░░░░
-# G █████████░░░░░░░
-# B ████████░░░░░░░░
-# L ░░░░░░░░█░░░░░░░
-# 
-# dark
-# R ████░░░░░░░░░░░░
-# G ███░░░░░░░░░░░░░
-# B ██░░░░░░░░░░░░░░
-# L ░░█░░░░░░░░░░░░░
-```
-
-## Saturation from range
+### Saturation from range
 
 To assess the saturation of your hex code, compare its RGB profile from
-`dh_graph()` to the guide provided by `dh_guide("L")`. A larger RGB
+`dh_graph()` to the guide provided by `dh_guide("S")`. A larger RGB
 range means a more saturated colour.
+
+<details>
+<summary>
+Click to see the saturation guides
+</summary>
 
 ``` r
 dehex::dh_guide("S")
@@ -221,22 +213,88 @@ dehex::dh_guide("S")
 # S ░░░░░░░░█░░░░░░░
 ```
 
-## The solution
+</details>
 
-You can learn how to describe your hex code’s colour by comparing its
-RGB profile against profiles that describe different hues, saturation
-and lightness.
+### Lightness from total
 
-Luckily, there’s a function that ‘solves’ the short hex code and returns
-you the phrase in English. So, for our input \#E9F, the ‘answer’ is:
+To assess the lightness of your hex code, compare its RGB profile from
+`dh_graph()` to the guide provided by `dh_guide("L")`. A higher total
+RGB means it’s lighter in colour, but I’ve chosen to show the mean value
+as a guide.
+
+<details>
+<summary>
+Click to see the lightness guides
+</summary>
 
 ``` r
-dehex::dh_solve(short)
+dehex::dh_guide("L")
+# light
+# R ████████████████
+# G ███████████████░
+# B ██████████████░░
+# L ░░░░░░░░░░░░░░█░
+# 
+# middle
+# R ██████████░░░░░░
+# G █████████░░░░░░░
+# B ████████░░░░░░░░
+# L ░░░░░░░░█░░░░░░░
+# 
+# dark
+# R ████░░░░░░░░░░░░
+# G ███░░░░░░░░░░░░░
+# B ██░░░░░░░░░░░░░░
+# L ░░█░░░░░░░░░░░░░
+```
+
+</details>
+
+## The solution
+
+Luckily, `dh_solve()` returns the ‘answer’ for your colour. So, for our
+input \#E9F, the ‘answer’ is:
+
+``` r
+dehex::dh_solve(short, graphs = FALSE)
 # [1] "light washed violet"
 ```
 
-TODO: return also the user’s hex’s bar chart and the matched hue,
-saturation and lightness bar charts, given a logical argument.
+Of course, you could just use this function to get a simple way of
+communicating colour from hex codes without learning how to do it by
+‘reading’ a hex code yourself.
+
+You can also ask to return the relevant bar charts that best describe
+the hue, saturation and lightness that led to the result.
+
+``` r
+dehex::dh_solve(short)
+# #E9F is light washed violet 
+# 
+# input code: #E9F
+# R ███████████████░ H 2
+# G ██████████░░░░░░ H 1
+# B ████████████████ H 3
+# S ░░░░░░░░░███████
+# L ░░░░░░░░░░░░░█░░
+# 
+# hue: violet
+# R █████████░░░░░░░ H 2
+# G █░░░░░░░░░░░░░░░ H 1
+# B ████████████████ H 3
+# 
+# saturation: washed
+# R █████████████░░░
+# G █████████░░░░░░░
+# B ████░░░░░░░░░░░░
+# S ░░░██████████░░░
+# 
+# lightness: light
+# R ████████████████
+# G ███████████████░
+# B ██████████████░░
+# L ░░░░░░░░░░░░░░█░
+```
 
 ## Code of Conduct
 
