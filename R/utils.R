@@ -1,8 +1,10 @@
 
+# Vector of dec values named for their hex value
 .get_hex2dec <- function() {
   stats::setNames(0:15, c(0:9, LETTERS[1:6]))
 }
 
+# Vector of RGB hex values for supplied short hexcode
 .get_rgb_hex <- function(hex_short) {
   stats::setNames(
     strsplit(hex_short, "")[[1]][2:4],
@@ -10,6 +12,7 @@
   )
 }
 
+# Vector of RGB dec values for supplied short hexcode
 .get_rgb_dec <- function(hex2dec_lookup, rgb_hex) {
   purrr::set_names(
     purrr::map_dbl(c("R", "G", "B"), ~hex2dec_lookup[rgb_hex[.x]]),
@@ -17,10 +20,12 @@
   )
 }
 
+# List of unicode blocks for bar charts
 .get_blocks <- function() {
   list(full = "\U2588", empty = "\U2591")
 }
 
+# Build bars from blocks given RGB dec values
 .get_rgb_blocksets <- function(blocks,
                                rgb_dec,
                                adorn_h = FALSE,
@@ -72,61 +77,89 @@
 
 }
 
-.print_hue_guide <- function() {
+# Vector of colour names, named with their short hex code
+.get_rgb2name <- function(type = c("H", "S", "L")) {
 
-  hue_hex <- c(
-    "#F00" = "Red (primary)",
-    "#0F0" = "Green (primary)",
-    "#00F" = "Blue (primary)",
-    "#FF0" = "Yellow (secondary)",
-    "#0FF" = "Cyan (secondary)",
-    "#F0F" = "Magenta (secondary)",
-    "#F80" = "Orange (tertiary)",
-    "#8F0" = "Chartreuse (tertiary)",
-    "#0F8" = "Aquamarine (tertiary)",
-    "#08F" = "Azure (tertiary)",
-    "#80F" = "Violet (tertiary)",
-    "#F08" = "Rose (tertiary)",
-    "#888" = "Grey"
-  )
+  if (type == "H") {
 
-  purrr::walk2(
-    names(hue_hex),
-    hue_hex,
-    dh_graph, adorn_s = FALSE, adorn_l = FALSE
-  )
+    col_vector <- c(
+      "#F00" = "Red (primary)",
+      "#0F0" = "Green (primary)",
+      "#00F" = "Blue (primary)",
+      "#FF0" = "Yellow (secondary)",
+      "#0FF" = "Cyan (secondary)",
+      "#F0F" = "Magenta (secondary)",
+      "#F80" = "Orange (tertiary)",
+      "#8F0" = "Chartreuse (tertiary)",
+      "#0F8" = "Aquamarine (tertiary)",
+      "#08F" = "Azure (tertiary)",
+      "#80F" = "Violet (tertiary)",
+      "#F08" = "Rose (tertiary)",
+      "#888" = "Grey"
+    )
+
+  }
+
+  if (type == "S") {
+
+    col_vector <- c(
+      "#F80" = "Saturated",
+      "#D82" = "Washed",
+      "#A85" = "Muted",
+      "#888" = "Grey"
+    )
+
+  }
+
+  if (type == "L") {
+
+    col_vector <- c(
+      "#FED" = "Light",
+      "#987" = "Middle",
+      "#321" = "Dark"
+    )
+
+  }
+
+  return(col_vector)
 
 }
 
-.print_light_guide <- function() {
+# Cat the full set of visual-aid bar charts for H, S, L
+.print_guide <- function(type = c("H", "S", "L")) {
 
-  light_hex <- c(
-    "#FED" = "Light",
-    "#987" = "Middle",
-    "#321" = "Dark"
-  )
+  if (type == "H") {
+
+    adorn_h_lgl <- TRUE
+    adorn_s_lgl <- FALSE
+    adorn_l_lgl <- FALSE
+
+  }
+
+  if (type == "S") {
+
+    adorn_h_lgl <- FALSE
+    adorn_s_lgl <- TRUE
+    adorn_l_lgl <- FALSE
+
+  }
+
+  if (type == "L") {
+
+    adorn_h_lgl <- FALSE
+    adorn_s_lgl <- FALSE
+    adorn_l_lgl <- TRUE
+
+  }
+
+  rgb_dict <- .get_rgb2name(type)
 
   purrr::walk2(
-    names(light_hex),
-    light_hex,
-    dh_graph, adorn_h = FALSE, adorn_s = FALSE
-  )
-
-}
-
-.print_sat_guide <- function() {
-
-  sat_hex <- c(
-    "#F80" = "Saturated",
-    "#D82" = "Washed",
-    "#A85" = "Muted",
-    "#888" = "Grey"
-  )
-
-  purrr::walk2(
-    names(sat_hex),
-    sat_hex,
-    dh_graph, adorn_h = FALSE, adorn_l = FALSE
+    names(rgb_dict), rgb_dict,
+    dh_graph,
+    adorn_h = adorn_h_lgl,
+    adorn_s = adorn_s_lgl,
+    adorn_l = adorn_l_lgl
   )
 
 }

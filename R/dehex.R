@@ -158,9 +158,36 @@ dh_guide <- function(type = c("H", "S", "L")) {
     stop("'hsl' must take a single character: 'H', 'S' or 'L'.")
   }
 
-  if (type == "H") .print_hue_guide()
-  if (type == "S") .print_sat_guide()
-  if (type == "L") .print_light_guide()
+  if (type == "H") .print_guide("H")
+  if (type == "S") .print_guide("S")
+  if (type == "L") .print_guide("L")
+
+}
+
+# WIP
+dh_solve <- function(hex_code) {
+
+  if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
+    stop(
+      "'hex_code' must be a valid 3- or 6-character hex code starting with '#'."
+    )
+  }
+
+  if (grepl("^#[[:xdigit:]]{6}$", hex_code)) {
+    hex_code <- dh_shorten(hex_code)
+  }
+
+  hex_short <- toupper(hex_code)
+
+  hex2dec_lookup <- .get_hex2dec()
+  rgb_hex <- .get_rgb_hex(hex_code)
+  rgb_dec <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
+
+  rgb_rank  <- rank(rgb_dec)
+  rgb_mean  <- round(mean(rgb_dec))
+  rgb_range <- range(rgb_dec)
+
+  list(rgb_rank, rgb_mean, rgb_range)
 
 }
 
