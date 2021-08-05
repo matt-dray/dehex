@@ -107,7 +107,7 @@ dh_graph <- function(hex_short,
 
   hex2dec_lookup <- .get_hex2dec()
   rgb_hex <- .get_rgb_hex(hex_short)
-  rgb_dec <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
+  rgb_dec <- .get_rgb_dec(rgb_hex, hex2dec_lookup)
 
   blocks <- .get_blocks()
   blocksets <- .get_rgb_blocksets(
@@ -164,7 +164,16 @@ dh_guide <- function(type = c("H", "S", "L")) {
 
 }
 
-# WIP
+#' Describe in Words a Colour from its Hex Code
+#'
+#' @param hex_code Character. A valid hex colour code starting with a hash mark
+#'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
+#'
+#' @return Character. A string describing the input hex colour in words, like
+#'     'middle saturated azure'.
+#'
+#' @export
+#' @examples dh_solve("#08F")
 dh_solve <- function(hex_code) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
@@ -178,16 +187,42 @@ dh_solve <- function(hex_code) {
   }
 
   hex_short <- toupper(hex_code)
-
   hex2dec_lookup <- .get_hex2dec()
-  rgb_hex <- .get_rgb_hex(hex_code)
-  rgb_dec <- .get_rgb_dec(hex2dec_lookup, rgb_hex)
 
-  rgb_rank  <- rank(rgb_dec)
-  rgb_mean  <- round(mean(rgb_dec))
-  rgb_range <- range(rgb_dec)
+  # Asses user input
+  user_hex   <- .get_rgb_hex(hex_short)
+  user_dec   <- .get_rgb_dec(user_hex, hex2dec_lookup)
+  user_rank  <- rank(user_dec)  # hue
+  user_range <- diff(range(user_dec))  # saturation
+  user_mean  <- round(mean(user_dec))  # lightness
 
-  list(rgb_rank, rgb_mean, rgb_range)
+  # Assess hues
+  hue_hex_list  <- purrr::map(.get_rgb2name("H"), .get_rgb_hex)
+  hue_dec_list  <- purrr::map(hue_hex_list, ~.get_rgb_dec(.x, hex2dec_lookup))
+  hue_rank_list <- purrr::map(hue_dec_list, rank)
+
+  # User's hue solved
+  hue_rank_list_lgl <- purrr::map(hue_rank_list, ~ all(`==`(.x, user_rank)))
+  hue_solved        <- names(Filter(isTRUE, hue_rank_list_lgl))
+
+  # User's saturation solved
+  sat_solved <- dplyr::case_when(
+    user_range == 1 ~ "Grey",
+    user_range >= 2  & user_range <= 4  ~ "muted",
+    user_range >= 5  & user_range <= 9  ~ "washed",
+    user_range >= 10 & user_range <= 16 ~ "saturated",
+    TRUE ~ "ERROR"
+  )
+
+  # User's lightness solved
+  light_solved <- dplyr::case_when(
+    user_mean >= 0  & user_mean <= 5  ~ "dark",
+    user_mean >= 6  & user_mean <= 10 ~ "middle",
+    user_mean >= 11 & user_mean <= 16 ~ "light",
+    TRUE ~ "ERROR"
+  )
+
+  paste(light_solved, sat_solved, hue_solved)
 
 }
 

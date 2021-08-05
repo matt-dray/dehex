@@ -98,9 +98,15 @@ dehex::dh_guide("S")
 
 ## The solution
 
-You can learn how to describe your hex code's colour by comparing its RGB profile against profiles that describe different hues, saturation and lightness. So our example of `r short` is 'light washed violet'.
+You can learn how to describe your hex code's colour by comparing its RGB profile against profiles that describe different hues, saturation and lightness.
 
-TODO: We probably need a `dh_solve()` function that output the 'correct' answer, which prints the descriptive colour name and each of the relevant HSL charts. It might be good to output  a sample of the colour to a plot as well (both the three- and original six-digit hex codes).
+Luckily, there's a function that 'solves' the short hex code and returns you the phrase in English. So, for our input `r short`, the 'answer' is:
+
+```{r ex-solve}
+dehex::dh_solve(short)
+```
+
+TODO: return also the user's hex's bar chart and the matched hue, saturation and lightness bar charts, given a logical argument.
 
 ## Code of Conduct
 

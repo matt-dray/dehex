@@ -13,7 +13,7 @@
 }
 
 # Vector of RGB dec values for supplied short hexcode
-.get_rgb_dec <- function(hex2dec_lookup, rgb_hex) {
+.get_rgb_dec <- function(rgb_hex, hex2dec_lookup) {
   purrr::set_names(
     purrr::map_dbl(c("R", "G", "B"), ~hex2dec_lookup[rgb_hex[.x]]),
     c("R", "G", "B")
@@ -83,19 +83,23 @@
   if (type == "H") {
 
     col_vector <- c(
-      "#F00" = "Red (primary)",
-      "#0F0" = "Green (primary)",
-      "#00F" = "Blue (primary)",
-      "#FF0" = "Yellow (secondary)",
-      "#0FF" = "Cyan (secondary)",
-      "#F0F" = "Magenta (secondary)",
-      "#F80" = "Orange (tertiary)",
-      "#8F0" = "Chartreuse (tertiary)",
-      "#0F8" = "Aquamarine (tertiary)",
-      "#08F" = "Azure (tertiary)",
-      "#80F" = "Violet (tertiary)",
-      "#F08" = "Rose (tertiary)",
-      "#888" = "Grey"
+      # primary
+      "red"   = "#F00",
+      "green" = "#0F0",
+      "blue"  = "#00F",
+      # secondary
+      "yellow"  = "#FF0",
+      "cyan"    = "#0FF",
+      "magenta" = "#F0F",
+      # tertiary
+      "orange"     = "#F80",
+      "chartreuse" = "#8F0",
+      "aquamarine" = "#0F8",
+      "azure"      = "#08F",
+      "violet"     = "#80F",
+      "rose"       = "#F08",
+      # grey
+      "grey"       = "#888"
     )
 
   }
@@ -103,10 +107,10 @@
   if (type == "S") {
 
     col_vector <- c(
-      "#F80" = "Saturated",
-      "#D82" = "Washed",
-      "#A85" = "Muted",
-      "#888" = "Grey"
+      "saturated" = "#F80",
+      "washed"    = "#C83",
+      "muted"     = "#986",
+      "grey"      = "#888"
     )
 
   }
@@ -114,9 +118,9 @@
   if (type == "L") {
 
     col_vector <- c(
-      "#FED" = "Light",
-      "#987" = "Middle",
-      "#321" = "Dark"
+      "light"  = "#FED",
+      "middle" = "#987",
+      "dark"   = "#321"
     )
 
   }
@@ -155,7 +159,7 @@
   rgb_dict <- .get_rgb2name(type)
 
   purrr::walk2(
-    names(rgb_dict), rgb_dict,
+    rgb_dict, names(rgb_dict),
     dh_graph,
     adorn_h = adorn_h_lgl,
     adorn_s = adorn_s_lgl,
