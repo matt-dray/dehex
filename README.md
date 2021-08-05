@@ -94,67 +94,67 @@ channel (smallest value is ranked ‘1’ and so on).
 
 ``` r
 dehex::dh_guide("H")
-# Red (primary)
+# red
 # R ████████████████ H 3
 # G █░░░░░░░░░░░░░░░ H 1.5
 # B █░░░░░░░░░░░░░░░ H 1.5
 # 
-# Green (primary)
+# green
 # R █░░░░░░░░░░░░░░░ H 1.5
 # G ████████████████ H 3
 # B █░░░░░░░░░░░░░░░ H 1.5
 # 
-# Blue (primary)
+# blue
 # R █░░░░░░░░░░░░░░░ H 1.5
 # G █░░░░░░░░░░░░░░░ H 1.5
 # B ████████████████ H 3
 # 
-# Yellow (secondary)
+# yellow
 # R ████████████████ H 2.5
 # G ████████████████ H 2.5
 # B █░░░░░░░░░░░░░░░ H 1
 # 
-# Cyan (secondary)
+# cyan
 # R █░░░░░░░░░░░░░░░ H 1
 # G ████████████████ H 2.5
 # B ████████████████ H 2.5
 # 
-# Magenta (secondary)
+# magenta
 # R ████████████████ H 2.5
 # G █░░░░░░░░░░░░░░░ H 1
 # B ████████████████ H 2.5
 # 
-# Orange (tertiary)
+# orange
 # R ████████████████ H 3
 # G █████████░░░░░░░ H 2
 # B █░░░░░░░░░░░░░░░ H 1
 # 
-# Chartreuse (tertiary)
+# chartreuse
 # R █████████░░░░░░░ H 2
 # G ████████████████ H 3
 # B █░░░░░░░░░░░░░░░ H 1
 # 
-# Aquamarine (tertiary)
+# aquamarine
 # R █░░░░░░░░░░░░░░░ H 1
 # G ████████████████ H 3
 # B █████████░░░░░░░ H 2
 # 
-# Azure (tertiary)
+# azure
 # R █░░░░░░░░░░░░░░░ H 1
 # G █████████░░░░░░░ H 2
 # B ████████████████ H 3
 # 
-# Violet (tertiary)
+# violet
 # R █████████░░░░░░░ H 2
 # G █░░░░░░░░░░░░░░░ H 1
 # B ████████████████ H 3
 # 
-# Rose (tertiary)
+# rose
 # R ████████████████ H 3
 # G █░░░░░░░░░░░░░░░ H 1
 # B █████████░░░░░░░ H 2
 # 
-# Grey
+# grey
 # R █████████░░░░░░░ H 2
 # G █████████░░░░░░░ H 2
 # B █████████░░░░░░░ H 2
@@ -169,19 +169,19 @@ as a guide.
 
 ``` r
 dehex::dh_guide("L")
-# Light
+# light
 # R ████████████████
 # G ███████████████░
 # B ██████████████░░
 # L ░░░░░░░░░░░░░░█░
 # 
-# Middle
+# middle
 # R ██████████░░░░░░
 # G █████████░░░░░░░
 # B ████████░░░░░░░░
 # L ░░░░░░░░█░░░░░░░
 # 
-# Dark
+# dark
 # R ████░░░░░░░░░░░░
 # G ███░░░░░░░░░░░░░
 # B ██░░░░░░░░░░░░░░
@@ -196,25 +196,25 @@ range means a more saturated colour.
 
 ``` r
 dehex::dh_guide("S")
-# Saturated
+# saturated
 # R ████████████████
 # G █████████░░░░░░░
 # B █░░░░░░░░░░░░░░░
 # S ████████████████
 # 
-# Washed
-# R ██████████████░░
+# washed
+# R █████████████░░░
 # G █████████░░░░░░░
-# B ███░░░░░░░░░░░░░
-# S ░░████████████░░
+# B ████░░░░░░░░░░░░
+# S ░░░██████████░░░
 # 
-# Muted
-# R ███████████░░░░░
+# muted
+# R ██████████░░░░░░
 # G █████████░░░░░░░
-# B ██████░░░░░░░░░░
-# S ░░░░░██████░░░░░
+# B ███████░░░░░░░░░
+# S ░░░░░░████░░░░░░
 # 
-# Grey
+# grey
 # R █████████░░░░░░░
 # G █████████░░░░░░░
 # B █████████░░░░░░░
@@ -225,12 +225,18 @@ dehex::dh_guide("S")
 
 You can learn how to describe your hex code’s colour by comparing its
 RGB profile against profiles that describe different hues, saturation
-and lightness. So our example of \#E9F is ‘light washed violet’.
+and lightness.
 
-TODO: We probably need a `dh_solve()` function that output the ‘correct’
-answer, which prints the descriptive colour name and each of the
-relevant HSL charts. It might be good to output a sample of the colour
-to a plot as well (both the three- and original six-digit hex codes).
+Luckily, there’s a function that ‘solves’ the short hex code and returns
+you the phrase in English. So, for our input \#E9F, the ‘answer’ is:
+
+``` r
+dehex::dh_solve(short)
+# [1] "light washed violet"
+```
+
+TODO: return also the user’s hex’s bar chart and the matched hue,
+saturation and lightness bar charts, given a logical argument.
 
 ## Code of Conduct
 
