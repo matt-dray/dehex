@@ -28,7 +28,7 @@ proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https:
 
 > To remove a hex (a spell, especially an evil spell).
 
-An R package containing simple functions to help me train myself to 'read' a colour from its hex code. I'm colourblind (a deuteranope) so this might be a useful skill.
+An work-in-progress R package containing simple functions to help me train myself to 'read' a colour from its hex code. I'm colourblind (a deuteranope) so this might be a useful skill.
 
 ## The DeSandro method
 

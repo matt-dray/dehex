@@ -240,8 +240,12 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
   if (graphs) {
 
     cat(
-      hex_code, "is",
-      paste(light_solved, sat_solved, hue_solved),
+      "Result:", hex_short, "is",
+      paste0(
+        "'",
+        paste(light_solved, sat_solved, hue_solved),
+        "'"
+      ),
       "\n\n"
     )
 

@@ -18,16 +18,16 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 > To remove a hex (a spell, especially an evil spell).
 
-An R package containing simple functions to help me train myself to
-‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
-this might be a useful skill.
+An work-in-progress R package containing simple functions to help me
+train myself to ‘read’ a colour from its hex code. I’m colourblind (a
+deuteranope) so this might be a useful skill.
 
 ## The DeSandro method
 
-[David DeSandro gave a talk at dotCSS
-2018](https://metafizzy.co/blog/read-color-hex-codes/) about ‘reading’
-colour hex codes by eye to get a colour like dark saturated orange’
-([thanks
+[David DeSandro gave a talk at
+dotCSS 2018](https://metafizzy.co/blog/read-color-hex-codes/) about
+‘reading’ colour hex codes by eye to get a colour like dark saturated
+orange’ ([thanks
 Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)).
 
 There are five steps:
@@ -101,9 +101,8 @@ this reason, the end of each bar shows you the relative `rank()` of each
 channel (smallest value is ranked ‘1’ and so on).
 
 <details>
-<summary>
-Click to see the hue guides
-</summary>
+
+<summary>Click to see the hue guides</summary>
 
 ``` r
 dehex::dh_guide("H")
@@ -182,9 +181,8 @@ To assess the saturation of your hex code, compare its RGB profile from
 range means a more saturated colour.
 
 <details>
-<summary>
-Click to see the saturation guides
-</summary>
+
+<summary>Click to see the saturation guides</summary>
 
 ``` r
 dehex::dh_guide("S")
@@ -223,9 +221,8 @@ RGB means it’s lighter in colour, but I’ve chosen to show the mean value
 as a guide.
 
 <details>
-<summary>
-Click to see the lightness guides
-</summary>
+
+<summary>Click to see the lightness guides</summary>
 
 ``` r
 dehex::dh_guide("L")
@@ -269,7 +266,7 @@ the hue, saturation and lightness that led to the result.
 
 ``` r
 dehex::dh_solve(short, swatch = FALSE)
-# #6CF is light washed azure 
+# Result: #6CF is 'light washed azure' 
 # 
 # input code: #6CF
 # R ███████░░░░░░░░░ H 1
