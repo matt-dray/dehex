@@ -2,7 +2,7 @@
 % Please edit documentation in R/dehex.R
 \name{dh_swatch}
 \alias{dh_swatch}
-\title{Plot a Short Colour Hex Code}
+\title{Plot the Colour of a Short Hex Code}
 \usage{
 dh_swatch(hex_code)
 }
@@ -11,10 +11,10 @@ dh_swatch(hex_code)
 (#). Characters must take the values 0 to 9 or A to F (case insensitive).}
 }
 \value{
-A plot.
+A {grid} graphics plot.
 }
 \description{
-Plot a Short Colour Hex Code
+Check the colour of an input hex colour code by plotting it.
 }
 \examples{
 dh_swatch("#F14362")

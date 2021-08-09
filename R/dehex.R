@@ -282,12 +282,14 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
 
 }
 
-#' Plot a Short Colour Hex Code
+#' Plot the Colour of a Short Hex Code
+#'
+#' Check the colour of an input hex colour code by plotting it.
 #'
 #' @param hex_code Character. A valid hex colour code starting with a hash mark
 #'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
 #'
-#' @return A plot.
+#' @return A {grid} graphics plot.
 #' @export
 #'
 #' @examples dh_swatch("#F14362")
@@ -309,10 +311,13 @@ dh_swatch <- function(hex_code) {
     collapse = ""
   )
 
-  def_par <- graphics::par(no.readonly = TRUE)
-  graphics::par(mar = rep(0, 4))
-  graphics::image(matrix(1, 1), col = hex_doubleup, axes = FALSE)
-  graphics::text(0, 0, hex_short)
-  graphics::par(def_par)
+  grid::grid.newpage()
+
+  grid::grid.draw(
+    grid::rectGrob(
+      gp = grid::gpar(fill = hex_doubleup, lty = 0)
+    )
+  )
 
 }
+

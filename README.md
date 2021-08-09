@@ -308,7 +308,7 @@ And if you’re wondering what the colour actually is, you can either set
 dehex::dh_swatch(short)
 ```
 
-<img src="man/figures/README-ex-swatch-1.png" title="A square of colour with its three-digit hex colour code in text in the centre." alt="A square of colour with its three-digit hex colour code in text in the centre." width="100%" />
+<img src="man/figures/README-ex-swatch-1.png" title="A square of colour with its three-digit hex colour code in text in the centre." alt="A square of colour with its three-digit hex colour code in text in the centre." width="100px" height="100px" />
 
 ## Code of Conduct
 
