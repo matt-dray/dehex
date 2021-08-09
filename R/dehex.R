@@ -215,26 +215,27 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
   hue_solved        <- names(Filter(isTRUE, hue_rank_list_lgl))
 
   # User's saturation solved
-  sat_solved <- dplyr::case_when(
-    user_range == 0 ~ "grey",
-    user_range >= 1  & user_range <= 5  ~ "muted",
-    user_range >= 6  & user_range <= 11  ~ "washed",
-    user_range >= 12 & user_range <= 16 ~ "saturated",
-    TRUE ~ "ERROR"
-  )
+  if (user_range == 0) {
+    sat_solved <- "grey"
+  } else if (user_range >= 1  & user_range <= 5) {
+    sat_solved <- "muted"
+  } else if (user_range >= 6  & user_range <= 11 ) {
+    sat_solved <- "washed"
+  } else if (user_range >= 12 & user_range <= 16) {
+    sat_solved <- "saturated"
+  } else {
+    stop("sat_solved result not valid")
+  }
 
   # User's lightness solved
-  light_solved <- dplyr::case_when(
-    user_mean >= 0  & user_mean <= 5  ~ "dark",
-    user_mean >= 6  & user_mean <= 10 ~ "middle",
-    user_mean >= 11 & user_mean <= 16 ~ "light",
-    TRUE ~ "ERROR"
-  )
-
-  if (swatch) {
-
-    dh_swatch(hex_short)
-
+  if (user_mean >= 0  & user_mean <= 5) {
+    light_solved <- "dark"
+  } else if (user_mean >= 6  & user_mean <= 10) {
+    light_solved <- "middle"
+  } else if (user_mean >= 11 & user_mean <= 16) {
+    light_solved <- "light"
+  } else {
+    stop("light_solved result not valid")
   }
 
   if (!graphs) {
