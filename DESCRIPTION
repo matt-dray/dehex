@@ -1,6 +1,6 @@
 Package: dehex
 Title: Learn to Roughly Assess Hex Code Colours
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Matt",
            family = "Dray",
@@ -8,6 +8,8 @@ Authors@R:
            email = "mattdray@gmail.com")
 Description: Follow David DeSanto's method to quickly generate a rough colour
     name by looking only at its hex code.
+URL: https://github.com/matt-dray/dehex
+BugReports: https://github.com/matt-dray/dehex/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
