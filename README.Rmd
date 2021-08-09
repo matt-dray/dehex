@@ -66,11 +66,18 @@ You could also generate a random one with `dh_random()`.
 
 ## Bar chart
 
-Use `dh_graph()` to print to the console a bar chart that shows the decimal values of red (R), green (G) and blue (B) for your shortened hex code. The RGB columns are printed in colour in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+Use `dh_graph()` to print to the console a bar chart that shows the decimal values of red (R), green (G) and blue (B) for your shortened hex code. 
 
 ```{r ex-graph}
 dehex::dh_graph(short)
 ```
+
+The RGB columns are printed in colour in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+
+<div class="figure">
+<img src="man/figures/graph-crayon-dark.png" alt="Output from the dehex package's dh_graph function, which shows a horizontal bar chart in the RStudio console with a dark theme. The columns are labelled R, G, B, S and L and the ends of the RGB columns are labelled H1, H2 and H3. The RGB bars are coloured red, blue and green; S and L are white. Above the plot is the three-digit colour hex code that graph is summarising." width="250px"/>
+</div>
+
 
 Note that the chart is adorned by extra information that tells you something about the hue (H, i.e. the relative 'rank' of each RGB channel), saturation (S, i.e. the RGB range) and lightness (L, i.e. the RGB average). You can remove these guides by setting the `adorn_*` arguments to `FALSE`.
 
