@@ -102,7 +102,6 @@ test_that("solved output is generated", {
   expect_output(
     dh_solve("#fff", graphs = TRUE, swatch = FALSE),
     paste0(
-      "^Result: #FFF is 'light grey grey'.*",
       "input code: #FFF.*",
       "R.*H 2.*G.*H 2.*B.*H 2.*S.*L.*hue.*saturation.*lightness"
     )
@@ -115,7 +114,7 @@ test_that("solved output is generated", {
 
   expect_length(
     capture.output(dh_solve("#fff", graphs = TRUE, swatch = FALSE)),
-    26
+    25
   )
 
   expect_error(dh_solve("#fffffff"))

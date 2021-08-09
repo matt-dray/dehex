@@ -76,7 +76,7 @@ dh_random <- function(shorten = FALSE) {
 #'     take the values 0 to 9 or A to F (case insensitive).
 #' @param text Character. An optional string to place above the plot. If NULL
 #'     (default), then the shortcode will be automatically selected.
-#' @param adorn_h Logical. Add an optional value showing the relative rrank of
+#' @param adorn_h Logical. Add an optional value showing the relative rank of
 #'     the RGB values (i.e. am indicator of hue)? A visual aid.
 #' @param adorn_s Logical. Add an optional bar showing where the range of the RGB
 #'     values falls (i.e. am indicator of saturation)? A visual aid.
@@ -120,8 +120,8 @@ dh_graph <- function(hex_short,
     crayon::red(  c("R ", blocksets$R, "\n")),
     crayon::green(c("G ", blocksets$G, "\n")),
     crayon::blue( c("B ", blocksets$B, "\n")),
-    if (adorn_s) c("S ", blocksets$S, "\n"),
-    if (adorn_l) c("L ", blocksets$L, "\n"),
+    if (adorn_s)  c("S ", blocksets$S, "\n"),
+    if (adorn_l)  c("L ", blocksets$L, "\n"),
     "\n",
     sep = ""
   )
@@ -164,25 +164,25 @@ dh_guide <- function(type = c("H", "S", "L")) {
 
 }
 
-#' Describe in Words a Colour from its Hex Code
+#' Get a Name for a Hex Code With Optional Diagnostic Plots and Swatch
 #'
 #' Convert a colour hex code to an English string that roughly describes its
 #' colour in terms of hue, saturation and lightness, like 'dark saturated
-#' azure'.
+#' azure'. Optionally print to the console the hue, saturation and lightness
+#' graphs that best approximate that hex code. Optionally plot a block with
+#' the colour that the hex code encodes.
 #'
 #' @param hex_code Character. A valid hex colour code starting with a hash mark
 #'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
 #' @param graphs Logical. Do you want to print the result and associated hue,
-#'     saturation and lightness bar charts to the console? Defaults to TRUE. If
-#'     FALSE, the answer will be returned as a single character string.
+#'     saturation and lightness bar charts to the console? Defaults to TRUE.
 #' @param swatch Logical. Print to a graphical device a plot of the colour
-#'     represented by (three-digit) hex code?
+#'     represented by (three-digit) hex code? Defaults to TRUE.
 #'
-#' @return Either nothing, but results printed to the console (i.e. when
-#'     graphs = TRUE), or a single character string (i.e. when graphs = FALSE).
+#' @return A character string. Optionally some console output and a plot.
 #'
 #' @export
-#' @examples dh_solve("#08F", graphs = FALSE)
+#' @examples dh_solve("#08F", graphs = FALSE, swatch = FALSE)
 dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
@@ -201,7 +201,7 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
   # Asses user input
   user_hex   <- .get_rgb_hex(hex_short)
   user_dec   <- .get_rgb_dec(user_hex, hex2dec_lookup)
-  user_rank  <- rank(user_dec)  # hue
+  user_rank  <- .rank_with_tolerance(user_dec)  # hue
   user_range <- diff(range(user_dec))  # saturation
   user_mean  <- round(mean(user_dec))  # lightness
 
@@ -231,6 +231,12 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
     TRUE ~ "ERROR"
   )
 
+  if (swatch) {
+
+    dh_swatch(hex_short)
+
+  }
+
   if (!graphs) {
 
     return(paste(light_solved, sat_solved, hue_solved))
@@ -238,16 +244,6 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
   }
 
   if (graphs) {
-
-    cat(
-      "Result:", hex_short, "is",
-      paste0(
-        "'",
-        paste(light_solved, sat_solved, hue_solved),
-        "'"
-      ),
-      "\n\n"
-    )
 
     dh_graph(
       hex_short,
@@ -272,11 +268,7 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
       adorn_h = FALSE, adorn_s = FALSE
     )
 
-  }
-
-  if (swatch) {
-
-    dh_swatch(hex_short)
+    return(paste(light_solved, sat_solved, hue_solved))
 
   }
 
@@ -289,7 +281,7 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
 #' @param hex_code Character. A valid hex colour code starting with a hash mark
 #'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
 #'
-#' @return A {grid} graphics plot.
+#' @return A plot.
 #' @export
 #'
 #' @examples dh_swatch("#F14362")

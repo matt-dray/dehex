@@ -33,7 +33,7 @@
                                adorn_l = FALSE) {
 
   if (adorn_h) {
-    rgb_dec_rank <- rank(rgb_dec)
+    rgb_dec_rank <- .rank_with_tolerance(rgb_dec)
   }
 
   blockset <- purrr::set_names(
@@ -165,5 +165,46 @@
     adorn_s = adorn_s_lgl,
     adorn_l = adorn_l_lgl
   )
+
+}
+
+# Allow for a wider tolerance when computing ties in RGB hue
+.rank_with_tolerance <- function(rgb_vec, tolerance = 2) {
+
+  rg_diff <- abs(rgb_vec[["R"]] - rgb_vec[["G"]])
+  gb_diff <- abs(rgb_vec[["G"]] - rgb_vec[["B"]])
+  rb_diff <- abs(rgb_vec[["R"]] - rgb_vec[["B"]])
+
+  diff_tol <- tolerance
+
+  if (rg_diff <= diff_tol & gb_diff <= diff_tol & rb_diff <= diff_tol) {
+
+    rgb_ranked <- c("R" = 2, "G" = 2, "B" = 2)
+
+  } else if (rg_diff <= diff_tol) {
+
+    rgb_ranked <- rank(rgb_vec)
+    rgb_ranked["R"] <- rgb_ranked["G"] <-
+      mean(c(rgb_ranked["R"], rgb_ranked["G"]))
+
+  } else if (gb_diff <= diff_tol) {
+
+    rgb_ranked <- rank(rgb_vec)
+    rgb_ranked["G"] <- rgb_ranked["B"] <-
+      mean(c(rgb_ranked["G"], rgb_ranked["B"]))
+
+  } else if (rb_diff <= diff_tol) {
+
+    rgb_ranked <- rank(rgb_vec)
+    rgb_ranked["R"] <- rgb_ranked["B"] <-
+      mean(c(rgb_ranked["R"], rgb_ranked["B"]))
+
+  } else {
+
+    rgb_ranked <- rank(rgb_vec)
+
+  }
+
+  return(rgb_ranked)
 
 }
