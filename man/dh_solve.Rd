@@ -2,7 +2,7 @@
 % Please edit documentation in R/dehex.R
 \name{dh_solve}
 \alias{dh_solve}
-\title{Describe in Words a Colour from its Hex Code}
+\title{Get a Name for a Hex Code With Optional Diagnostic Plots and Swatch}
 \usage{
 dh_solve(hex_code, graphs = TRUE, swatch = TRUE)
 }
@@ -11,21 +11,21 @@ dh_solve(hex_code, graphs = TRUE, swatch = TRUE)
 (#). Characters must take the values 0 to 9 or A to F (case insensitive).}
 
 \item{graphs}{Logical. Do you want to print the result and associated hue,
-saturation and lightness bar charts to the console? Defaults to TRUE. If
-FALSE, the answer will be returned as a single character string.}
+saturation and lightness bar charts to the console? Defaults to TRUE.}
 
 \item{swatch}{Logical. Print to a graphical device a plot of the colour
-represented by (three-digit) hex code?}
+represented by (three-digit) hex code? Defaults to TRUE.}
 }
 \value{
-Either nothing, but results printed to the console (i.e. when
-graphs = TRUE), or a single character string (i.e. when graphs = FALSE).
+A character string. Optionally some console output and a plot.
 }
 \description{
 Convert a colour hex code to an English string that roughly describes its
 colour in terms of hue, saturation and lightness, like 'dark saturated
-azure'.
+azure'. Optionally print to the console the hue, saturation and lightness
+graphs that best approximate that hex code. Optionally plot a block with
+the colour that the hex code encodes.
 }
 \examples{
-dh_solve("#08F", graphs = FALSE)
+dh_solve("#08F", graphs = FALSE, swatch = FALSE)
 }

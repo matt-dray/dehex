@@ -11,7 +11,7 @@ dh_swatch(hex_code)
 (#). Characters must take the values 0 to 9 or A to F (case insensitive).}
 }
 \value{
-A {grid} graphics plot.
+A plot.
 }
 \description{
 Check the colour of an input hex colour code by plotting it.

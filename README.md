@@ -18,15 +18,15 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 > To remove a hex (a spell, especially an evil spell).
 
-An work-in-progress R package containing simple functions to help me
-train myself to ‘read’ a colour from its hex code. I’m colourblind (a
-deuteranope) so this might be a useful skill.
+An R package containing simple functions to help me train myself to
+‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
+this might be a useful skill.
 
 ## The DeSandro method
 
 [David DeSandro gave a talk at
 dotCSS 2018](https://metafizzy.co/blog/read-color-hex-codes/) about
-‘reading’ colour hex codes by eye to get a colour like dark saturated
+‘reading’ colour hex codes by eye to get a colour like ‘dark saturated
 orange’ ([thanks
 Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)).
 
@@ -106,7 +106,8 @@ To assess the hue of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts
 don’t matter; it’s the relative values of RGB that we care about. For
 this reason, the end of each bar shows you the relative `rank()` of each
-channel (smallest value is ranked ‘1’ and so on).
+channel (the smallest value is ranked ‘1’, a tie between the two
+smallest gives them both a rank of ‘1.5’, etc).
 
 <details>
 
@@ -181,6 +182,13 @@ dehex::dh_guide("H")
 ```
 
 </details>
+
+Well, technically my ranking system here has a wider tolerance for ties.
+So RGB values of 15, 6, and 5 will result in a tie between green and
+blue because their difference is below a certain threshold (2, but
+subject to testing). This is an opinionated trade-off that means there’s
+more chance something can be called ‘red’ rather than ‘orange’, for
+example.
 
 ### Saturation from range
 
@@ -274,8 +282,6 @@ the hue, saturation and lightness that led to the result.
 
 ``` r
 dehex::dh_solve(short, swatch = FALSE)
-# Result: #6CF is 'light washed azure' 
-# 
 # input code: #6CF
 # R ███████░░░░░░░░░ H 1
 # G █████████████░░░ H 2
@@ -299,10 +305,12 @@ dehex::dh_solve(short, swatch = FALSE)
 # G ███████████████░
 # B ██████████████░░
 # L ░░░░░░░░░░░░░░█░
+# [1] "light washed azure"
 ```
 
 And if you’re wondering what the colour actually is, you can either set
-`swatch = TRUE` in `dh_solve()`, or use `dh_swatch()`.
+`swatch = TRUE` in `dh_solve()`, or use `dh_swatch()` to generate a plot
+filled with that colour.
 
 ``` r
 dehex::dh_swatch(short)

@@ -20,7 +20,7 @@ take the values 0 to 9 or A to F (case insensitive).}
 \item{text}{Character. An optional string to place above the plot. If NULL
 (default), then the shortcode will be automatically selected.}
 
-\item{adorn_h}{Logical. Add an optional value showing the relative rrank of
+\item{adorn_h}{Logical. Add an optional value showing the relative rank of
 the RGB values (i.e. am indicator of hue)? A visual aid.}
 
 \item{adorn_s}{Logical. Add an optional bar showing where the range of the RGB
