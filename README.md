@@ -302,7 +302,7 @@ dehex::dh_solve(short, swatch = FALSE)
 ```
 
 And if you’re wondering what the colour actually is, you can either set
-`swatch = FALSE` in `dh_solve()`, or use `dh_swatch()`.
+`swatch = TRUE` in `dh_solve()`, or use `dh_swatch()`.
 
 ``` r
 dehex::dh_swatch(short)
