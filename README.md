@@ -265,11 +265,11 @@ dehex::dh_guide("L")
 
 ## The solution
 
-Luckily, `dh_solve()` returns the ‘answer’ for your colour. So, for our
-input \#6CF, the ‘answer’ is:
+Luckily, `dh_solve()` returns the ‘answer’ for your colour as a text
+string. So, for our input \#6CF, the ‘answer’ is:
 
 ``` r
-dehex::dh_solve(short, graphs = FALSE, swatch = FALSE)
+dehex::dh_solve(short)
 # [1] "light washed azure"
 ```
 
@@ -281,7 +281,7 @@ You can also ask to return the relevant bar charts that best describe
 the hue, saturation and lightness that led to the result.
 
 ``` r
-dehex::dh_solve(short, swatch = FALSE)
+dehex::dh_solve(short, graphs = TRUE)
 # input code: #6CF
 # R ███████░░░░░░░░░ H 1
 # G █████████████░░░ H 2

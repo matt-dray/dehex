@@ -119,10 +119,10 @@ dehex::dh_guide("L")
 
 ## The solution
 
-Luckily, `dh_solve()` returns the 'answer' for your colour. So, for our input `r short`, the 'answer' is:
+Luckily, `dh_solve()` returns the 'answer' for your colour as a text string. So, for our input `r short`, the 'answer' is:
 
 ```{r ex-solve}
-dehex::dh_solve(short, graphs = FALSE, swatch = FALSE)
+dehex::dh_solve(short)
 ```
 
 Of course, you could just use this function to get a simple way of communicating colour from hex codes without learning how to do it by 'reading' a hex code yourself.
@@ -130,7 +130,7 @@ Of course, you could just use this function to get a simple way of communicating
 You can also ask to return the relevant bar charts that best describe the hue, saturation and lightness that led to the result.
 
 ```{r ex-solve2}
-dehex::dh_solve(short, swatch = FALSE)
+dehex::dh_solve(short, graphs = TRUE)
 ```
 
 And if you're wondering what the colour actually is, you can either set `swatch = TRUE` in `dh_solve()`, or use `dh_swatch()` to generate a plot filled with that colour.

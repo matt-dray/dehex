@@ -168,22 +168,22 @@ dh_guide <- function(type = c("H", "S", "L")) {
 #'
 #' Convert a colour hex code to an English string that roughly describes its
 #' colour in terms of hue, saturation and lightness, like 'dark saturated
-#' azure'. Optionally print to the console the hue, saturation and lightness
-#' graphs that best approximate that hex code. Optionally plot a block with
-#' the colour that the hex code encodes.
+#' azure'. Optionally plot a block with the colour that the hex code encodes.
+#' Optionally print to the console the hue, saturation and lightness
+#' graphs that best approximate that hex code.
 #'
 #' @param hex_code Character. A valid hex colour code starting with a hash mark
 #'     (#). Characters must take the values 0 to 9 or A to F (case insensitive).
-#' @param graphs Logical. Do you want to print the result and associated hue,
-#'     saturation and lightness bar charts to the console? Defaults to TRUE.
 #' @param swatch Logical. Print to a graphical device a plot of the colour
-#'     represented by (three-digit) hex code? Defaults to TRUE.
+#'     represented by (three-digit) hex code? Defaults to FALSE.
+#' @param graphs Logical. Do you want to print the result and associated hue,
+#'     saturation and lightness bar charts to the console? Defaults to FALSE.
 #'
 #' @return A character string. Optionally some console output and a plot.
 #'
 #' @export
 #' @examples dh_solve("#08F", graphs = FALSE, swatch = FALSE)
-dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
+dh_solve <- function(hex_code, swatch = FALSE, graphs = FALSE) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
     stop(
@@ -238,9 +238,9 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
     stop("light_solved result not valid")
   }
 
-  if (!graphs) {
+  if (swatch) {
 
-    return(paste(light_solved, sat_solved, hue_solved))
+    dh_swatch(hex_short)
 
   }
 
@@ -269,9 +269,9 @@ dh_solve <- function(hex_code, graphs = TRUE, swatch = TRUE) {
       adorn_h = FALSE, adorn_s = FALSE
     )
 
-    return(paste(light_solved, sat_solved, hue_solved))
-
   }
+
+  return(paste(light_solved, sat_solved, hue_solved))
 
 }
 
