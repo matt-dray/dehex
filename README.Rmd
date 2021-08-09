@@ -133,7 +133,7 @@ dehex::dh_solve(short, swatch = FALSE)
 
 And if you're wondering what the colour actually is, you can either set `swatch = FALSE` in `dh_solve()`, or use `dh_swatch()`.
 
-```{r ex-swatch, fig.alt="A square of colour with its three-digit hex colour code in text in the centre."}
+```{r ex-swatch, out.width="100px", out.height="100px", fig.alt="A square of colour with its three-digit hex colour code in text in the centre."}
 dehex::dh_swatch(short)
 ```
 
