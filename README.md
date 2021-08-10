@@ -12,6 +12,10 @@ proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https:
 [![R-CMD-check](https://github.com/matt-dray/dehex/workflows/R-CMD-check/badge.svg)](https://github.com/matt-dray/dehex/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](https://codecov.io/gh/matt-dray/dehex?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/oystr)](https://CRAN.R-project.org/package=oystr)
+[![Blog
+post](https://img.shields.io/badge/rostrum.blog-post-008900?labelColor=000000&logo=data%3Aimage%2Fgif%3Bbase64%2CR0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh%2BQQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://github.com/matt-dray/dehex)
 <!-- badges: end -->
 
 ‘Dehex’, from [Wiktionary](https://en.wiktionary.org/wiki/dehex):
@@ -20,14 +24,15 @@ coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](ht
 
 An R package containing simple functions to help me train myself to
 ‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
-this might be a useful skill.
+this might be a useful skill. [Read the accompanying blog
+post](https://github.com/matt-dray/dehex) for more info.
 
 ## The DeSandro method
 
-[David DeSandro gave a talk at dotCSS
-2018](https://metafizzy.co/blog/read-color-hex-codes/) about ‘reading’
-colour hex codes by eye to get a colour like ‘dark saturated orange’
-([thanks
+[David DeSandro gave a talk at
+dotCSS 2018](https://metafizzy.co/blog/read-color-hex-codes/) about
+‘reading’ colour hex codes by eye to get a colour like ‘dark saturated
+orange’ ([thanks
 Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)).
 
 There are five steps:
@@ -110,9 +115,8 @@ channel (the smallest value is ranked ‘1’, a tie between the two
 smallest gives them both a rank of ‘1.5’, etc).
 
 <details>
-<summary>
-Click to see the hue guides
-</summary>
+
+<summary>Click to see the hue guides</summary>
 
 ``` r
 dehex::dh_guide("H")
@@ -198,9 +202,8 @@ To assess the saturation of your hex code, compare its RGB profile from
 range means a more saturated colour.
 
 <details>
-<summary>
-Click to see the saturation guides
-</summary>
+
+<summary>Click to see the saturation guides</summary>
 
 ``` r
 dehex::dh_guide("S")
@@ -239,9 +242,8 @@ RGB means it’s lighter in colour, but I’ve chosen to show the mean value
 as a guide.
 
 <details>
-<summary>
-Click to see the lightness guides
-</summary>
+
+<summary>Click to see the lightness guides</summary>
 
 ``` r
 dehex::dh_guide("L")
