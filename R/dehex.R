@@ -165,21 +165,23 @@ dh_graph <- function(hex_short,
 #'     no difference between RGB  values). In the lightness guide they're
 #'     'light' (i.e.high mean value of RGB), 'middle', and 'dark' (i.e. small
 #'     range in RGB values).
+#' @param crayon Logical. Do you want to print to the console in colour, using
+#'     the {crayon} package?
 #'
 #' @return Nothing. Prints bar charts of RGB values to the console, made with
 #'     unicode blocks.
 #' @export
 #'
 #' @examples dh_guide("L")
-dh_guide <- function(type = c("H", "S", "L")) {
+dh_guide <- function(type = c("H", "S", "L"), crayon = TRUE) {
 
   if (!is.character(type) | !type %in% c("H", "S", "L")) {
     stop("'hsl' must take a single character: 'H', 'S' or 'L'.")
   }
 
-  if (type == "H") .print_guide("H")
-  if (type == "S") .print_guide("S")
-  if (type == "L") .print_guide("L")
+  if (type == "H") .print_guide("H", crayon = crayon)
+  if (type == "S") .print_guide("S", crayon = crayon)
+  if (type == "L") .print_guide("L", crayon = crayon)
 
 }
 
@@ -197,12 +199,17 @@ dh_guide <- function(type = c("H", "S", "L")) {
 #'     represented by (three-digit) hex code? Defaults to FALSE.
 #' @param graphs Logical. Do you want to print the result and associated hue,
 #'     saturation and lightness bar charts to the console? Defaults to FALSE.
+#' @param crayon Logical. Do you want to print to the console in colour, using
+#'     the {crayon} package?
 #'
 #' @return A character string. Optionally some console output and a plot.
 #'
 #' @export
 #' @examples dh_solve("#08F", graphs = FALSE, swatch = FALSE)
-dh_solve <- function(hex_code, swatch = FALSE, graphs = FALSE) {
+dh_solve <- function(hex_code,
+                     swatch = FALSE,
+                     graphs = FALSE,
+                     crayon = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{6}|[[:xdigit:]]{3})$", hex_code)) {
     stop(
@@ -268,24 +275,28 @@ dh_solve <- function(hex_code, swatch = FALSE, graphs = FALSE) {
     dh_graph(
       hex_short,
       paste("input code:", hex_short),
+      crayon = crayon
     )
 
     dh_graph(
       .get_rgb2name("H")[hue_solved],
       paste("hue:", hue_solved),
-      adorn_s = FALSE, adorn_l = FALSE
+      adorn_s = FALSE, adorn_l = FALSE,
+      crayon = crayon
     )
 
     dh_graph(
       .get_rgb2name("S")[sat_solved],
       paste("saturation:", sat_solved),
-      adorn_h = FALSE, adorn_l = FALSE
+      adorn_h = FALSE, adorn_l = FALSE,
+      crayon = crayon
     )
 
     dh_graph(
       .get_rgb2name("L")[light_solved],
       paste("lightness:", light_solved),
-      adorn_h = FALSE, adorn_s = FALSE
+      adorn_h = FALSE, adorn_s = FALSE,
+      crayon = crayon
     )
 
   }

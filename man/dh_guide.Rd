@@ -4,11 +4,14 @@
 \alias{dh_guide}
 \title{Print RGB Bar Graphs as Guides for Hue, Saturation and Light}
 \usage{
-dh_guide(type = c("H", "S", "L"))
+dh_guide(type = c("H", "S", "L"), crayon = TRUE)
 }
 \arguments{
 \item{type}{Character. Which of hue ('H'), saturation ('S') or
 light ('L') that you want to print the guide for.}
+
+\item{crayon}{Logical. Do you want to print to the console in colour, using
+the {crayon} package?}
 }
 \value{
 Nothing. Prints bar charts of RGB values to the console, made with

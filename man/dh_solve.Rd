@@ -4,7 +4,7 @@
 \alias{dh_solve}
 \title{Get a Name for a Hex Code With Optional Diagnostic Plots and Swatch}
 \usage{
-dh_solve(hex_code, swatch = FALSE, graphs = FALSE)
+dh_solve(hex_code, swatch = FALSE, graphs = FALSE, crayon = TRUE)
 }
 \arguments{
 \item{hex_code}{Character. A valid hex colour code starting with a hash mark
@@ -15,6 +15,9 @@ represented by (three-digit) hex code? Defaults to FALSE.}
 
 \item{graphs}{Logical. Do you want to print the result and associated hue,
 saturation and lightness bar charts to the console? Defaults to FALSE.}
+
+\item{crayon}{Logical. Do you want to print to the console in colour, using
+the {crayon} package?}
 }
 \value{
 A character string. Optionally some console output and a plot.

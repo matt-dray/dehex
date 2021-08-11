@@ -4,7 +4,7 @@
 \name{dehex-package}
 \alias{dehex}
 \alias{dehex-package}
-\title{dehex: Learn to Roughly Assess Hex Code Colours}
+\title{dehex: Learn to Roughly Assess Colour Hex Code}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

@@ -130,7 +130,7 @@
 }
 
 # Cat the full set of visual-aid bar charts for H, S, L
-.print_guide <- function(type = c("H", "S", "L")) {
+.print_guide <- function(type = c("H", "S", "L"), crayon) {
 
   if (type == "H") {
 
@@ -163,7 +163,8 @@
     dh_graph,
     adorn_h = adorn_h_lgl,
     adorn_s = adorn_s_lgl,
-    adorn_l = adorn_l_lgl
+    adorn_l = adorn_l_lgl,
+    crayon = crayon
   )
 
 }
