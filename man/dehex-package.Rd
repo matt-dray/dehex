@@ -6,8 +6,18 @@
 \alias{dehex-package}
 \title{dehex: Learn to Roughly Assess Hex Code Colours}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Follow David DeSanto's method to quickly generate a rough colour
     name by looking only at its hex code.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/matt-dray/dehex}
+  \item Report bugs at \url{https://github.com/matt-dray/dehex/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Matt Dray \email{mattdray@gmail.com}

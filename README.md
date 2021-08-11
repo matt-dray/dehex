@@ -29,10 +29,10 @@ post](https://github.com/matt-dray/dehex) for more info.
 
 ## The DeSandro method
 
-[David DeSandro gave a talk at
-dotCSS 2018](https://metafizzy.co/blog/read-color-hex-codes/) about
-‘reading’ colour hex codes by eye to get a colour like ‘dark saturated
-orange’ ([thanks
+[David DeSandro gave a talk at dotCSS
+2018](https://metafizzy.co/blog/read-color-hex-codes/) about ‘reading’
+colour hex codes by eye to get a colour like ‘dark saturated orange’
+([thanks
 Maëlle](https://twitter.com/ma_salmon/status/1420726230194794496?s=20)).
 
 There are five steps:
@@ -85,7 +85,8 @@ dehex::dh_graph(short)
 ```
 
 The RGB columns are printed in colour in RStudio, thanks to [the
-{crayon} package](https://github.com/r-lib/crayon).
+{crayon} package](https://github.com/r-lib/crayon). (You can turn this
+off by setting the argument `crayon = FALSE`.)
 
 <div class="figure">
 
@@ -114,9 +115,15 @@ this reason, the end of each bar shows you the relative `rank()` of each
 channel (the smallest value is ranked ‘1’, a tie between the two
 smallest gives them both a rank of ‘1.5’, etc).
 
-<details>
+Well, technically my ranking system here has a wider tolerance for ties.
+So RGB values of 15, 6, and 5 will result in a tie between green and
+blue because their difference is below a certain threshold (2, but
+subject to testing).
 
-<summary>Click to see the hue guides</summary>
+<details>
+<summary>
+Click to see the hue guides
+</summary>
 
 ``` r
 dehex::dh_guide("H")
@@ -188,13 +195,6 @@ dehex::dh_guide("H")
 
 </details>
 
-Well, technically my ranking system here has a wider tolerance for ties.
-So RGB values of 15, 6, and 5 will result in a tie between green and
-blue because their difference is below a certain threshold (2, but
-subject to testing). This is an opinionated trade-off that means there’s
-more chance something can be called ‘red’ rather than ‘orange’, for
-example.
-
 ### Saturation from range
 
 To assess the saturation of your hex code, compare its RGB profile from
@@ -202,8 +202,9 @@ To assess the saturation of your hex code, compare its RGB profile from
 range means a more saturated colour.
 
 <details>
-
-<summary>Click to see the saturation guides</summary>
+<summary>
+Click to see the saturation guides
+</summary>
 
 ``` r
 dehex::dh_guide("S")
@@ -242,8 +243,9 @@ RGB means it’s lighter in colour, but I’ve chosen to show the mean value
 as a guide.
 
 <details>
-
-<summary>Click to see the lightness guides</summary>
+<summary>
+Click to see the lightness guides
+</summary>
 
 ``` r
 dehex::dh_guide("L")
