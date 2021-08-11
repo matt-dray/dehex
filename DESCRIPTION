@@ -1,6 +1,6 @@
 Package: dehex
-Title: Learn to Roughly Assess Hex Code Colours
-Version: 0.1.0
+Title: Learn to Roughly Assess Colour Hex Code
+Version: 0.1.1
 Authors@R: 
     person(given = "Matt",
            family = "Dray",

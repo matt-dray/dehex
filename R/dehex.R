@@ -82,6 +82,8 @@ dh_random <- function(shorten = FALSE) {
 #'     values falls (i.e. am indicator of saturation)? A visual aid.
 #' @param adorn_l Logical. Add an optional bar showing where the mean of the RGB
 #'     values falls (i.e. am indicator of lightness)? A visual aid.
+#' @param crayon Logical. Do you want to print to the console in colour, using
+#'     the {crayon} package?
 #'
 #' @details The amount of red (R), green (G) and blue (B) is calculated on the
 #'     basis that hex shortcodes contain one character for each colour. Since
@@ -97,7 +99,8 @@ dh_graph <- function(hex_short,
                      text = NULL,
                      adorn_h = TRUE,
                      adorn_s = TRUE,
-                     adorn_l = TRUE) {
+                     adorn_l = TRUE,
+                     crayon = TRUE) {
 
   if (!grepl("^#([[:xdigit:]]{3})$", hex_short)) {
     stop("'hex_code' must be a valid 3-character hex code starting '#'.")
@@ -115,17 +118,33 @@ dh_graph <- function(hex_short,
     adorn_h = adorn_h, adorn_s = adorn_s, adorn_l = adorn_l
   )
 
-  cat(
-    ifelse(is.null(text), hex_short, text), "\n",
-    crayon::red(  c("R ", blocksets$R, "\n")),
-    crayon::green(c("G ", blocksets$G, "\n")),
-    crayon::blue( c("B ", blocksets$B, "\n")),
-    if (adorn_s)  c("S ", blocksets$S, "\n"),
-    if (adorn_l)  c("L ", blocksets$L, "\n"),
-    "\n",
-    sep = ""
-  )
+  if (crayon) {
 
+    cat(
+      ifelse(is.null(text), hex_short, text), "\n",
+      crayon::red(  c("R ", blocksets$R, "\n")),
+      crayon::green(c("G ", blocksets$G, "\n")),
+      crayon::blue( c("B ", blocksets$B, "\n")),
+      if (adorn_s)  c("S ", blocksets$S, "\n"),
+      if (adorn_l)  c("L ", blocksets$L, "\n"),
+      "\n",
+      sep = ""
+    )
+
+  } else if (!crayon) {
+
+    cat(
+      ifelse(is.null(text), hex_short, text), "\n",
+      c("R ", blocksets$R, "\n"),
+      c("G ", blocksets$G, "\n"),
+      c("B ", blocksets$B, "\n"),
+      if (adorn_s)  c("S ", blocksets$S, "\n"),
+      if (adorn_l)  c("L ", blocksets$L, "\n"),
+      "\n",
+      sep = ""
+    )
+
+  }
 }
 
 

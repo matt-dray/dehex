@@ -9,7 +9,8 @@ dh_graph(
   text = NULL,
   adorn_h = TRUE,
   adorn_s = TRUE,
-  adorn_l = TRUE
+  adorn_l = TRUE,
+  crayon = TRUE
 )
 }
 \arguments{
@@ -28,6 +29,9 @@ values falls (i.e. am indicator of saturation)? A visual aid.}
 
 \item{adorn_l}{Logical. Add an optional bar showing where the mean of the RGB
 values falls (i.e. am indicator of lightness)? A visual aid.}
+
+\item{crayon}{Logical. Do you want to print to the console in colour, using
+the {crayon} package?}
 }
 \value{
 Nothing. Prints to the console with cat() a bar chart.

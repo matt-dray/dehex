@@ -74,12 +74,11 @@ Use `dh_graph()` to print to the console a bar chart that shows the decimal valu
 dehex::dh_graph(short)
 ```
 
-The RGB columns are printed in colour in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon).
+The RGB columns are printed in colour in RStudio, thanks to [the {crayon} package](https://github.com/r-lib/crayon). (You can turn this off by setting the argument `crayon = FALSE`.)
 
 <div class="figure">
 <img src="man/figures/graph-crayon-dark.png" alt="Output from the dehex package's dh_graph function, which shows a horizontal bar chart in the RStudio console with a dark theme. The columns are labelled R, G, B, S and L and the ends of the RGB columns are labelled H1, H2 and H3. The RGB bars are coloured red, blue and green; S and L are white. Above the plot is the three-digit colour hex code that graph is summarising." width="250px"/>
 </div>
-
 
 Note that the chart is adorned by extra information that tells you something about the hue (H, i.e. the relative 'rank' of each RGB channel), saturation (S, i.e. the RGB range) and lightness (L, i.e. the RGB average). You can remove these guides by setting the `adorn_*` arguments to `FALSE`.
 
@@ -91,13 +90,13 @@ The idea is to compare this to a set of guides that provide rough categorisation
 
 To assess the hue of your hex code, compare its RGB profile from `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts don't matter; it's the relative values of RGB that we care about. For this reason, the end of each bar shows you the relative `rank()` of each channel (the smallest value is ranked '1', a tie between the two smallest gives them both a rank of '1.5', etc).
 
+Well, technically my ranking system here has a wider tolerance for ties. So RGB values of 15, 6, and 5 will result in a tie between green and blue because their difference is below a certain threshold (2, but subject to testing).
+
 <details><summary>Click to see the hue guides</summary>
 ```{r ex-hue}
 dehex::dh_guide("H")
 ```
 </details>
-
-Well, technically my ranking system here has a wider tolerance for ties. So RGB values of 15, 6, and 5 will result in a tie between green and blue because their difference is below a certain threshold (2, but subject to testing). This is an opinionated trade-off that means there's more chance something can be called 'red' rather than 'orange', for example.
 
 ### Saturation from range
 
