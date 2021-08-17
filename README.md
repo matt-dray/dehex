@@ -24,7 +24,7 @@ post](https://img.shields.io/badge/rostrum.blog-post-008900?labelColor=000000&lo
 An R package containing simple functions to help me train myself to
 ‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
 this might be a useful skill. [Read the accompanying blog
-post](https://github.com/matt-dray/dehex) for more info.
+post](https://www.rostrum.blog/2021/08/10/dehex/) for more info.
 
 ## The DeSandro method
 
