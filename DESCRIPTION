@@ -1,13 +1,14 @@
 Package: dehex
-Title: Learn to Roughly Assess Colour Hex Code
+Title: Learn to Roughly Assess Colour Hex Codes By Eye
 Version: 0.1.1
 Authors@R: 
     person(given = "Matt",
            family = "Dray",
            role = c("aut", "cre"),
            email = "mattdray@gmail.com")
-Description: Follow David DeSanto's method to quickly generate a rough colour
-    name by looking only at its hex code.
+Description: Follow David DeSandro's method to quickly generate a rough colour
+    name (e.g. 'light washed yellow') by looking only at its hex code (e.g. 
+    #F2D359).
 URL: https://github.com/matt-dray/dehex
 BugReports: https://github.com/matt-dray/dehex/issues
 License: MIT + file LICENSE
@@ -15,13 +16,13 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Suggests: 
-    covr,
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
 Imports: 
     stats,
     crayon,
     purrr,
     graphics,
     grid
+Suggests: 
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
