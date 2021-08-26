@@ -1,6 +1,6 @@
 Package: dehex
 Title: Learn to Roughly Assess Colour Hex Codes By Eye
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person(given = "Matt",
            family = "Dray",
@@ -8,7 +8,7 @@ Authors@R:
            email = "mattdray@gmail.com")
 Description: Follow David DeSandro's method to quickly generate a rough colour
     name (e.g. 'light washed yellow') by looking only at its hex code (e.g. 
-    #F2D359).
+    #F2D359). Contains standalone functions and a Shiny app.
 URL: https://github.com/matt-dray/dehex
 BugReports: https://github.com/matt-dray/dehex/issues
 License: MIT + file LICENSE
@@ -17,12 +17,14 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
-    stats,
     crayon,
-    purrr,
     graphics,
-    grid
-Suggests: 
+    grid,
+    purrr,
+    stats
+Suggests:
+    bslib,
     covr,
+    shiny,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

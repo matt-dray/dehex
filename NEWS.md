@@ -1,3 +1,7 @@
+# dehex 0.1.2
+
+* Added a Shiny app (#32) called with `dh_app()`, transferred from the [matt-dray/dehex-challenge](https://github.com/matt-dray/dehex-challenge) repo
+
 # dehex 0.1.1
 
 * Added argument to turn off {crayon} in `dh_guide()` (#29).
