@@ -4,10 +4,7 @@
 \alias{dh_app}
 \title{A Shiny App Walkthrough to Read Colour Hex Codes}
 \usage{
-dh_app(...)
-}
-\arguments{
-\item{...}{Leave empty.}
+dh_app()
 }
 \value{
 Opens a Shiny app.
