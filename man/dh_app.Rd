@@ -15,7 +15,7 @@ Opens a Shiny app.
 \description{
 Rather than manually typing functions of {dehex} into your console, you can
 instead run this Shiny app to be guided through the process of learning to
-read a colour hex code.
+read a random colour hex code.
 }
 \examples{
 \dontrun{dh_app()}
