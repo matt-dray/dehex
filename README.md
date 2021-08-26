@@ -13,7 +13,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 coverage](https://codecov.io/gh/matt-dray/dehex/branch/main/graph/badge.svg)](https://codecov.io/gh/matt-dray/dehex?branch=main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/oystr)](https://CRAN.R-project.org/package=oystr)
-![](https://img.shields.io/badge/Shiny-call_dh__app()-blue?style=flat&labelColor=white&logo=RStudio&logoColor=blue)
+![Shiny
+app](https://img.shields.io/badge/Shiny-in_package-blue?style=flat&labelColor=white&logo=RStudio&logoColor=blue)
 [![Blog
 post](https://img.shields.io/badge/rostrum.blog-post-008900?labelColor=000000&logo=data%3Aimage%2Fgif%3Bbase64%2CR0lGODlhEAAQAPEAAAAAABWCBAAAAAAAACH5BAlkAAIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAAC55QkISIiEoQQQgghRBBCiCAIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAAh%2BQQJZAACACwAAAAAEAAQAAAC55QkIiESIoQQQgghhAhCBCEIgiAIgiAIQiAIgSAIgiAIQiAIgRAEQiAQBAQCgUAQEAQEgYAgIAgIBAKBQBAQCAKBQEAgCAgEAoFAIAgEBAKBIBAQCAQCgUAgEAgCgUBAICAgICAgIBAgEBAgEBAgEBAgECAgICAgECAQIBAQIBAgECAgICAgICAgECAQECAQICAgICAgICAgEBAgEBAgEBAgICAgICAgECAQIBAQIBAgECAgICAgIBAgECAQECAQIBAgICAgIBAgIBAgEBAgECAgECAgICAgICAgECAgECAgQIAAAQIKAAA7)](https://github.com/matt-dray/dehex)
 <!-- badges: end -->
@@ -22,10 +23,10 @@ post](https://img.shields.io/badge/rostrum.blog-post-008900?labelColor=000000&lo
 
 > To remove a hex (a spell, especially an evil spell).
 
-An R package containing simple functions to help me train myself to
-‘read’ a colour from its hex code. I’m colourblind (a deuteranope) so
-this might be a useful skill. [Read the accompanying blog
-post](https://www.rostrum.blog/2021/08/10/dehex/) for more info.
+An R package containing simple functions and a Shiny app to help me
+train myself to ‘read’ a colour from its hex code. I’m colourblind (a
+deuteranope) so this might be a useful skill. [Read the accompanying
+blog post](https://www.rostrum.blog/2021/08/10/dehex/) for more info.
 
 ## The DeSandro method
 
@@ -44,7 +45,8 @@ There are five steps:
 5.  Assess lightness from the RGB total
 
 This package contains functions that guide you through that process and
-can ‘solve’ the hex code for you.
+can ‘solve’ the hex code for you. I’ve also put them in a Shiny app
+that’s bundled with the package.
 
 ## Install
 
@@ -54,7 +56,23 @@ You can install the development version from GitHub.
 remotes::install_github("matt-dray/dehex")
 ```
 
-## Three-digit shorthand
+## App
+
+The package contains a Shiny app that generates a random colour hex code
+and walks you through the steps of DeSandro’s method using functions
+from the {dehex} package. You can run it with `dh_app()`. It requires
+the {shiny} and {bslib} packages, which can both be installed with
+`install.packages()`. Here’s a preview:
+
+<div class="figure">
+
+<img src="inst/images/app-screenshot-v0.1.2.png" alt="Screenshot of a Shiny app called 'Learn to read a colour hex code. On the left is a panel with a button labelled generate with a colour hex code beneath it. On the right is a panelset open on a panel called 'solve', which is showing an English phrase and example plot for the colour encoded by the hex code, which is 'middle washed orange'." width="100%"/>
+
+</div>
+
+## Functions
+
+### Three-digit shorthand
 
 First, convert a full six-character hex code to its three-character
 shortcode. This takes the first value from each pair of characters.
@@ -68,7 +86,7 @@ short
 
 You could also generate a random one with `dh_random()`.
 
-## Bar chart
+### Bar chart
 
 Use `dh_graph()` to print to the console a bar chart that shows the
 decimal values of red (R), green (G) and blue (B) for your shortened hex
@@ -104,9 +122,9 @@ The idea is to compare this to a set of guides that provide rough
 categorisations of hue, saturation and lightness to generate an English
 phrase.
 
-## Guides
+### Guides
 
-### Hue from shape
+#### Hue from shape
 
 To assess the hue of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("H")`. The exact amounts
@@ -195,7 +213,7 @@ dehex::dh_guide("H")
 
 </details>
 
-### Saturation from range
+#### Saturation from range
 
 To assess the saturation of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("S")`. A larger RGB
@@ -235,7 +253,7 @@ dehex::dh_guide("S")
 
 </details>
 
-### Lightness from total
+#### Lightness from total
 
 To assess the lightness of your hex code, compare its RGB profile from
 `dh_graph()` to the guide provided by `dh_guide("L")`. A higher total
@@ -270,7 +288,7 @@ dehex::dh_guide("L")
 
 </details>
 
-## The solution
+### The solution
 
 Luckily, `dh_solve()` returns the ‘answer’ for your colour as a text
 string. So, for our input \#6CF, the ‘answer’ is:
