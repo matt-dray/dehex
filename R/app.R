@@ -29,8 +29,8 @@ dh_app <- function() {
     # title ----
     shiny::h1(id = "title", "Learn to read colour hex codes"),
     shiny::p(
-      "A", a(href = "https://github.com/matt-dray/dehex", "{dehex}"), "demo following",
-      a(href = "https://metafizzy.co/blog/read-color-hex-codes/", "David DeSandro's method")
+      "A", shiny::a(href = "https://github.com/matt-dray/dehex", "{dehex}"), "demo following",
+      shiny::a(href = "https://metafizzy.co/blog/read-color-hex-codes/", "David DeSandro's method")
     ),
     shiny::br(),
 
