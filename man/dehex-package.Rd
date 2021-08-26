@@ -4,12 +4,13 @@
 \name{dehex-package}
 \alias{dehex}
 \alias{dehex-package}
-\title{dehex: Learn to Roughly Assess Colour Hex Code}
+\title{dehex: Learn to Roughly Assess Colour Hex Codes By Eye}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Follow David DeSanto's method to quickly generate a rough colour
-    name by looking only at its hex code.
+Follow David DeSandro's method to quickly generate a rough colour
+    name (e.g. 'light washed yellow') by looking only at its hex code (e.g. 
+    #F2D359). Contains standalone functions and a Shiny app.
 }
 \seealso{
 Useful links:
