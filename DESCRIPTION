@@ -5,17 +5,18 @@ Authors@R:
     person(given = "Matt",
            family = "Dray",
            role = c("aut", "cre"),
-           email = "mattdray@gmail.com")
+           email = "mwdray@gmail.com")
 Description: Follow David DeSandro's method to quickly generate a rough colour
     name (e.g. 'light washed yellow') by looking only at its hex code (e.g. 
-    #F2D359). Contains standalone functions and a Shiny app.
+    #F2D359). Contains standalone functions and a Shiny app for learning the
+    process interactively.
 URL: https://github.com/matt-dray/dehex
 BugReports: https://github.com/matt-dray/dehex/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     crayon,
     graphics,

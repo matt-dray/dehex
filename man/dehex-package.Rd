@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Follow David DeSandro's method to quickly generate a rough colour
-    name (e.g. 'light washed yellow') by looking only at its hex code (e.g. 
-    #F2D359). Contains standalone functions and a Shiny app.
+Follow David DeSandro's method to quickly generate a rough colour name (e.g. 'light washed yellow') by looking only at its hex code (e.g. #F2D359). Contains standalone functions and a Shiny app for learning the process interactively.
 }
 \seealso{
 Useful links:
@@ -21,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Matt Dray \email{mattdray@gmail.com}
+\strong{Maintainer}: Matt Dray \email{mwdray@gmail.com}
 
 }
 \keyword{internal}
